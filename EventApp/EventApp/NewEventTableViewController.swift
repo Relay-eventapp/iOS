@@ -8,28 +8,35 @@
 
 import UIKit
 
+protocol NewEventTableViewDelegate {
+    func createNewEvent(eventName: String, eventLocation: CLLocationCoordinate2D)
+}
+
 class NewEventTableViewController: UITableViewController {
 
+    @IBOutlet weak var eventName: UITextField!
+    @IBOutlet weak var eventDescription: UITextField!
+    
+    var newEventLocation:CLLocationCoordinate2D!
+    
+    var delegate: NewEventTableViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        println("\n New Event Table View Controller View:")
+        println("coordinates passed from map view: (\(newEventLocation.latitude), \(newEventLocation.longitude))")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func doneButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        println("Dismissed Create New Event Controller")
+    
+        self.delegate?.createNewEvent(eventName.text, eventLocation: newEventLocation)
     }
- 
+    
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
     }
@@ -37,6 +44,7 @@ class NewEventTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
     }
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

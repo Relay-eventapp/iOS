@@ -8,6 +8,19 @@
 
 import UIKit
 
+extension MapViewController: NewEventTableViewDelegate
+{
+    func createNewEvent(eventName: String, eventLocation: CLLocationCoordinate2D)
+    {
+        var marker = GMSMarker(position: tappedLocation)
+        marker.infoWindowAnchor = CGPointMake(0.5, 3)
+        marker.map = mapView
+        
+        marker.title = eventName
+        marker.snippet = "new event created"
+    }
+}
+
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate
 {
     //create a location manager
@@ -23,9 +36,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var addressLabel: UILabel!
     
+    var tappedLocation:CLLocationCoordinate2D!
+    
     //Load the View
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        println("\n Map View:")
         
         //settings for the map view
         mapView.settings.consumesGesturesInView = true
@@ -76,25 +93,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         //}
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "createNewEvent"
+        {
+            let vc = segue.destinationViewController as NewEventTableViewController
+            vc.newEventLocation = tappedLocation
+            vc.delegate = self
+        }
+    }
+    
+    @IBAction func unwindToMapViewController(sender: UIStoryboardSegue)
+    {
+            println("unwinding to map view")
+    }
+    
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D)
     {
-        println("You created an event at (\(coordinate.latitude), \(coordinate.longitude))")
-        var position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
-        
-        var marker = GMSMarker(position: position)
-        marker.appearAnimation = kGMSMarkerAnimationPop
-        marker.infoWindowAnchor = CGPoint(x: 0.5, y: 3)
-        marker.map = mapView
-        
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("createNewEvent") as NewEventTableViewController
-        self.presentViewController(vc, animated: true, completion: nil)
+        tappedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+        self.performSegueWithIdentifier("createNewEvent", sender: self)
     }
     
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         
         var customInfoWindow = NSBundle.mainBundle().loadNibNamed("InfoWindow", owner: self, options: nil)[0] as CustomInfoWindow
         
-        //customInfoWindow.eventName.text = "New Event"
         return customInfoWindow
     }
     
@@ -131,7 +154,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         if status == .AuthorizedWhenInUse {
         
             locationManager.startUpdatingLocation()
-            
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
@@ -151,5 +173,4 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
