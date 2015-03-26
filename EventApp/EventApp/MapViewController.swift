@@ -28,9 +28,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     //create the UI buttons
     let menuButton = UIButton()
-    //let menuButtonImage = UIImage(named: "bullets.png") as UIImage!
+    let menuButtonImage = UIImage(named: "menu") as UIImage!
     let filterEventsButton = UIButton()
-    //let filterEventsButtonImage = UIImage(named: "filter.png") as UIImage!
+    let filterEventsButtonImage = UIImage(named: "filter") as UIImage!
     
     //create the map
     @IBOutlet weak var mapView: GMSMapView!
@@ -55,16 +55,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         locationManager.requestWhenInUseAuthorization()
         
         //initialize the menu button
-        //menuButton.setImage(menuButtonImage, forState: .Normal)
+        menuButton.setImage(menuButtonImage, forState: .Normal)
         menuButton.frame = CGRectMake(10, 30, 50, 50)
-        menuButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 0.9)
+        menuButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
         menuButton.layer.cornerRadius = 25
         self.view.addSubview(menuButton)
         
         //initialize the filter events button
-        //filterEventsButton.setImage(filterEventsButtonImage, forState: .Normal)
+        filterEventsButton.setImage(filterEventsButtonImage, forState: .Normal)
         filterEventsButton.frame = CGRectMake(self.view.frame.width - 60, 30, 50, 50)
-        filterEventsButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 0.9)
+        filterEventsButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
         filterEventsButton.layer.cornerRadius = 25
         self.view.addSubview(filterEventsButton)
         

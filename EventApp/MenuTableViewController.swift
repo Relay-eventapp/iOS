@@ -11,26 +11,26 @@ import UIKit
 class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegate {
 
     let menuButton = UIButton()
-    //let menuButtonImage = UIImage(named: "bullets.png") as UIImage!
+    let menuButtonImage = UIImage(named: "menu") as UIImage!
     
     let addEventButton = UIButton()
-    //let addEventButtonImage = UIImage(named: "add.png") as UIImage!
+    let addEventButtonImage = UIImage(named: "add") as UIImage!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         //initialize the menu button
-        //menuButton.setImage(menuButtonImage, forState: .Normal)
+        menuButton.setImage(menuButtonImage, forState: .Normal)
         menuButton.frame = CGRectMake(10, 10, 50, 50)
-        menuButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
+        //menuButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
         menuButton.layer.cornerRadius = 25
         self.view.addSubview(menuButton)
         
         //initialize the add event button
-        //addEventButton.setImage(addEventButtonImage, forState: .Normal)
+        addEventButton.setImage(addEventButtonImage, forState: .Normal)
         addEventButton.frame = CGRectMake(self.view.frame.width - 60, 10, 50, 50)
-        addEventButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
+        //addEventButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
         addEventButton.layer.cornerRadius = 25
         self.view.addSubview(addEventButton)
         
