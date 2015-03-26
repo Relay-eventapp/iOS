@@ -21,31 +21,31 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rkc-YD-Zr4">
-                                <rect key="frame" x="0.0" y="528" width="600" height="72"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3K-Ph-Yu9" userLabel="addressLabel">
+                                <rect key="frame" x="0.0" y="525" width="600" height="75"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="bGz-lY-hJr"/>
+                                    <constraint firstAttribute="height" constant="75" id="hnT-7O-ELc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Rkc-YD-Zr4" secondAttribute="bottom" id="JUy-O7-jXO"/>
-                            <constraint firstItem="Rkc-YD-Zr4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="RIc-pA-ALK"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="O3K-Ph-Yu9" secondAttribute="bottom" id="E1f-95-M2G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O3K-Ph-Yu9" secondAttribute="trailing" constant="-16" id="JZT-W4-aTR"/>
                             <constraint firstItem="PB5-qa-Hpp" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="VIP-jK-d6B"/>
                             <constraint firstItem="PB5-qa-Hpp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="VN1-8m-AdH"/>
                             <constraint firstItem="PB5-qa-Hpp" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="bga-2l-OiG"/>
                             <constraint firstAttribute="trailing" secondItem="PB5-qa-Hpp" secondAttribute="trailing" id="lMx-jW-xfm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Rkc-YD-Zr4" secondAttribute="trailing" constant="-16" id="m9l-hm-9DH"/>
+                            <constraint firstItem="O3K-Ph-Yu9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="wlb-n6-3eN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="033-A1-lJE"/>
                     <connections>
-                        <outlet property="addressLabel" destination="Rkc-YD-Zr4" id="quy-9X-04z"/>
+                        <outlet property="addressLabel" destination="O3K-Ph-Yu9" id="aGG-Sp-vnD"/>
                         <outlet property="mapView" destination="PB5-qa-Hpp" id="mTh-hR-L9U"/>
                         <segue destination="iAP-t8-Xac" kind="presentation" identifier="createNewEvent" id="1bp-HU-LJU"/>
                     </connections>
