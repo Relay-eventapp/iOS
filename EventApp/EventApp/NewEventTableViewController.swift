@@ -16,14 +16,21 @@ class NewEventTableViewController: UITableViewController {
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
+    @IBOutlet weak var doneButton: UIButton!
     
     var newEventLocation:CLLocationCoordinate2D!
     
     var delegate: NewEventTableViewDelegate?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         println("\nNew Event Table View Controller View:")
+        
+        //TODO: get rid of extraneous cells
+        
+        doneButton.addTarget(self.revealViewController(), action:Selector("doneButtonPressed:"), forControlEvents: .TouchUpInside)
+        doneButton.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,8 +38,9 @@ class NewEventTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func doneButton(sender: AnyObject) {
-    
+    //@IBAction func doneButton(sender: AnyObject) {
+    func doneButtonPressed(sender: UIButton)
+    {
         if(nameField.text != "")
         {
             println("Calling Create New Event.")
@@ -44,6 +52,7 @@ class NewEventTableViewController: UITableViewController {
             println("No information provided. Exiting View.")
         }
     }
+    //}
     
     /*
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

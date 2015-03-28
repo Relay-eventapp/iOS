@@ -68,19 +68,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         locationManager.requestWhenInUseAuthorization()
         
         //initialize the navigation and address labels
-        //navigationLabel.layer.cornerRadius = 50
+        navigationLabel.layer.masksToBounds = true
+        navigationLabel.layer.cornerRadius = 5
         
         //initialize the menu button
         menuButton.setImage(menuButtonImage, forState: .Normal)
         menuButton.frame = CGRectMake(8, 16+1, 42, 42)
-        //menuButton.backgroundColor = UIColor(red: 104/255, green: 104/255, blue: 104/255, alpha: 1.0)
         menuButton.layer.cornerRadius = 25
         self.view.addSubview(menuButton)
         
         //initialize the filter events button
         filterEventsButton.setImage(filterEventsButtonImage, forState: .Normal)
         filterEventsButton.frame = CGRectMake(self.view.frame.width - 8 - 42, 16, 42, 42)
-        //filterEventsButton.backgroundColor = UIColor(red: 104/255, green: 104/255, blue: 104/255, alpha: 1.0)
         filterEventsButton.layer.cornerRadius = 25
         self.view.addSubview(filterEventsButton)
         
@@ -162,7 +161,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             
             var markerLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             var marker = GMSMarker(position: markerLocation)
-            //marker.infoWindowAnchor = CGPointMake(0.5, 3)
+            
+            var randomPopup = Int(arc4random_uniform(5))
+            var popup = "popup\(randomPopup)"
+            
+            var randomIcon = Int(arc4random_uniform(9))
+            var icon = "tag\(randomIcon)"
+            
+            marker.icon = createMarkerIcon(popup, icon: icon)
             marker.title = name
             marker.snippet = description
             marker.map = mapView
@@ -220,5 +226,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func createMarkerIcon(popup: String!, icon: String!) -> UIImage
+    {
+        var bottomImage = UIImage(named: popup) //background image
+        var topImage    = UIImage(named: icon) //foreground image
+        
+        var newSize = CGSizeMake(50, 60)
+        UIGraphicsBeginImageContext(newSize)
+        
+        bottomImage?.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        topImage?.drawInRect(CGRectMake(0, 1, newSize.width, newSize.width))
+        
+        var combinedImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return combinedImage
     }
 }
