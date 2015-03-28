@@ -16,12 +16,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="rXK-TY-DMo"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                     <color key="textColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EventApp" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="61" width="441" height="70"/>
+                    <rect key="frame" x="20" y="75" width="441" height="70"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="gsY-oR-ffJ"/>
                     </constraints>
@@ -37,7 +37,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="7RI-4P-Uuf"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="8ie-xW-0ye" secondAttribute="leading" id="8uF-Px-Okg"/>
@@ -47,7 +47,7 @@
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="M9D-Lw-Yha"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" id="Q9H-ds-6Gj"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="centerX" secondItem="O72-N3-Hyf" secondAttribute="centerX" id="hq3-3n-Zvb"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="61" id="zqW-L8-uXT"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="zqW-L8-uXT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

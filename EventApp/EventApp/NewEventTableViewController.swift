@@ -9,13 +9,13 @@
 import UIKit
 
 protocol NewEventTableViewDelegate {
-    func createNewEvent(eventName: String, eventLocation: CLLocationCoordinate2D)
+    func createNewEvent(name: String, location: PFGeoPoint, description: String)
 }
 
 class NewEventTableViewController: UITableViewController {
 
-    @IBOutlet weak var eventName: UITextField!
-    @IBOutlet weak var eventDescription: UITextField!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var descriptionField: UITextField!
     
     var newEventLocation:CLLocationCoordinate2D!
     
@@ -23,8 +23,7 @@ class NewEventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("\n New Event Table View Controller View:")
-        println("coordinates passed from map view: (\(newEventLocation.latitude), \(newEventLocation.longitude))")
+        println("\nNew Event Table View Controller View:")
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,9 +33,19 @@ class NewEventTableViewController: UITableViewController {
     
     @IBAction func doneButton(sender: AnyObject) {
     
-        self.delegate?.createNewEvent(eventName.text, eventLocation: newEventLocation)
+        if(nameField.text != "")
+        {
+            println("Calling Create New Event.")
+            var location = PFGeoPoint(latitude: newEventLocation.latitude, longitude: newEventLocation.longitude)
+            self.delegate?.createNewEvent(nameField.text, location: location, description: descriptionField.text)
+        }
+        else
+        {
+            println("No information provided. Exiting View.")
+        }
     }
     
+    /*
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
     }
@@ -44,13 +53,13 @@ class NewEventTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
     }
+    */
     
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
+        
+        var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
+        
         return cell
     }
     */
