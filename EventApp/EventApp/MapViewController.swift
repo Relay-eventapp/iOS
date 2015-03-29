@@ -8,33 +8,6 @@
 
 import UIKit
 
-extension MapViewController: NewEventTableViewDelegate
-{
-    func createNewEvent(name: String, location: PFGeoPoint, description: String)
-    {
-        //check if the user has signed in
-        if(PFUser.currentUser() != nil)
-        {
-            var newEvent = PFObject(className: "Events")
-            newEvent.setObject(name, forKey: "name")
-            newEvent.setObject(description, forKey: "description")
-            newEvent.setObject(location, forKey: "location")
-            
-            newEvent.saveInBackgroundWithBlock {
-                (success: Bool!, error: NSError!) -> Void in
-                if success == true {
-                    println("Created New Event: \(name)")
-                }
-                else
-                {
-                    println(error)
-                }
-                
-            }
-        }
-    }
-}
-
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate
 {
     //create a location manager
@@ -52,6 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     @IBOutlet weak var addressLabel: UILabel!
 
     var tappedLocation:CLLocationCoordinate2D!
+    var didChangeCameraPosition:Bool!
     
     //Load the View
     override func viewDidLoad() {
@@ -117,7 +91,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             println("Performing segue to New Event Table View.")
             let vc = segue.destinationViewController as NewEventTableViewController
             vc.newEventLocation = tappedLocation
-            vc.delegate = self
         }
     }
     
@@ -149,8 +122,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         let view = PFGeoPoint(latitude: position.target.latitude, longitude: position.target.longitude)
         var query = PFQuery(className:"Events")
-        query.whereKey("location", nearGeoPoint: view)
-        query.limit = 10
+        query.whereKey("location", nearGeoPoint: view, withinKilometers: 0.5)
+        query.limit = 20
         let nearbyEvents = query.findObjects()
         
         for nearbyEvent in nearbyEvents {
@@ -162,19 +135,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             var markerLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             var marker = GMSMarker(position: markerLocation)
             
-            var randomPopup = Int(arc4random_uniform(5))
-            var popup = "popup\(randomPopup)"
+            //var randomPopup = Int(arc4random_uniform(11))
+            //var popup = "popup\(randomPopup)"
             
-            var randomIcon = Int(arc4random_uniform(9))
-            var icon = "tag\(randomIcon)"
+            //var randomIcon = Int(arc4random_uniform(9))
+            //var icon = "tag\(randomIcon)"
             
-            marker.icon = createMarkerIcon(popup, icon: icon)
+            //marker.icon = createMarkerIcon(popup, icon: icon)
             marker.title = name
             marker.snippet = description
             marker.map = mapView
             
-            println("Nearby Event: <\(name)> at \(location)")
+            //println("Nearby Event: <\(name)> at \(location)")
         }
+        
     }
     
     //lock the Map View when the user is scrolling in the Map View

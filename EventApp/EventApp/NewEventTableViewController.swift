@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol NewEventTableViewDelegate {
-    func createNewEvent(name: String, location: PFGeoPoint, description: String)
-}
-
 class NewEventTableViewController: UITableViewController {
 
     @IBOutlet weak var nameField: UITextField!
@@ -20,17 +16,16 @@ class NewEventTableViewController: UITableViewController {
     
     var newEventLocation:CLLocationCoordinate2D!
     
-    var delegate: NewEventTableViewDelegate?
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         println("\nNew Event Table View Controller View:")
         
-        //TODO: get rid of extraneous cells
-        
         doneButton.addTarget(self.revealViewController(), action:Selector("doneButtonPressed:"), forControlEvents: .TouchUpInside)
         doneButton.layer.cornerRadius = 5
+        
+        //var backgroundView =
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,25 +40,48 @@ class NewEventTableViewController: UITableViewController {
         {
             println("Calling Create New Event.")
             var location = PFGeoPoint(latitude: newEventLocation.latitude, longitude: newEventLocation.longitude)
-            self.delegate?.createNewEvent(nameField.text, location: location, description: descriptionField.text)
+            createNewEvent(nameField.text, location: location, description: descriptionField.text)
         }
         else
         {
             println("No information provided. Exiting View.")
         }
     }
-    //}
     
-    /*
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+    func createNewEvent(name: String, location: PFGeoPoint, description: String)
+    {
+        //check if the user has signed in
+        if(PFUser.currentUser() != nil)
+        {
+            var newEvent = PFObject(className: "Events")
+            newEvent.setObject(name, forKey: "name")
+            newEvent.setObject(description, forKey: "description")
+            newEvent.setObject(location, forKey: "location")
+            
+            newEvent.saveInBackgroundWithBlock {
+                (success: Bool!, error: NSError!) -> Void in
+                if success == true {
+                    println("Created New Event: \(name)")
+                }
+                else
+                {
+                    println(error)
+                }
+                
+            }
+        }
+        else
+        {
+            println("User not signed in.")
+        }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+    //if the user taps a certain cell
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        println("User tapped cell \(indexPath.row)")
+
     }
-    */
-    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -71,9 +89,8 @@ class NewEventTableViewController: UITableViewController {
         
         return cell
     }
-    */
     
-    /*
+
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
