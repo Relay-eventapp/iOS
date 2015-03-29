@@ -36,6 +36,11 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
             
             presentLogInSignUpView()
         }
+        else
+        {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
     }
     
     //present the Login and Signup View

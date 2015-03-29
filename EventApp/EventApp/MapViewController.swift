@@ -120,10 +120,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         reverseGeocodeCoordinate(position.target)
         
+        if(didChangeCameraPosition == true)
+        {
+            updateEventsInView(position)
+            didChangeCameraPosition = false
+        }
+        
+    }
+    
+    func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
+        
+        didChangeCameraPosition = true
+        
+    }
+    
+    //lock the Map View when the user is scrolling in the Map View
+    func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
+        addressLabel.lock()
+    }
+    
+    func updateEventsInView(position: GMSCameraPosition)
+    {
+        println("updateEventsInView")
         let view = PFGeoPoint(latitude: position.target.latitude, longitude: position.target.longitude)
         var query = PFQuery(className:"Events")
-        query.whereKey("location", nearGeoPoint: view, withinKilometers: 0.5)
-        query.limit = 20
+        query.whereKey("location", nearGeoPoint: view, withinKilometers: 10)
+        query.limit = 10
         let nearbyEvents = query.findObjects()
         
         for nearbyEvent in nearbyEvents {
@@ -131,29 +153,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             var name = nearbyEvent["name"] as String
             var location = nearbyEvent["location"] as PFGeoPoint
             var description = nearbyEvent["description"] as String
+            var popup = nearbyEvent["popup"] as Int
+            var icon = nearbyEvent["icon"] as Int
             
             var markerLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             var marker = GMSMarker(position: markerLocation)
             
-            //var randomPopup = Int(arc4random_uniform(11))
-            //var popup = "popup\(randomPopup)"
-            
-            //var randomIcon = Int(arc4random_uniform(9))
-            //var icon = "tag\(randomIcon)"
-            
-            //marker.icon = createMarkerIcon(popup, icon: icon)
+            marker.icon = createMarkerIcon("popup\(popup)", icon: "icon\(icon)")
             marker.title = name
             marker.snippet = description
             marker.map = mapView
             
             //println("Nearby Event: <\(name)> at \(location)")
         }
-        
-    }
-    
-    //lock the Map View when the user is scrolling in the Map View
-    func mapView(mapView: GMSMapView!, willMove gesture: Bool) {
-        addressLabel.lock()
     }
     
     //Reverse a CLLocationCoordinate 2D and return an address as String

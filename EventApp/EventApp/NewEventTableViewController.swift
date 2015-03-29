@@ -58,6 +58,10 @@ class NewEventTableViewController: UITableViewController {
             newEvent.setObject(description, forKey: "description")
             newEvent.setObject(location, forKey: "location")
             
+            //randomly generate icon and popup data for now
+            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "icon")
+            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "popup")
+            
             newEvent.saveInBackgroundWithBlock {
                 (success: Bool!, error: NSError!) -> Void in
                 if success == true {
