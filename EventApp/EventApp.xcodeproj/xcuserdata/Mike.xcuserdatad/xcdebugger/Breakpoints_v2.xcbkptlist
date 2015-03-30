@@ -35,5 +35,121 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventApp/NewEventTableViewController.swift"
+            timestampString = "449369960.846287"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "NewEventTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventApp.NewEventTableViewController.addCoverPhotoCellHeight.getter : CoreGraphics.CGFloat"
+                  moduleName = "EventApp"
+                  urlString = "file:///Users/Mike/Desktop/iOS/EventApp/EventApp/NewEventTableViewController.swift"
+                  timestampString = "449360550.22607"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventApp.NewEventTableViewController.addCoverPhotoCellHeight.setter : CoreGraphics.CGFloat"
+                  moduleName = "EventApp"
+                  urlString = "file:///Users/Mike/Desktop/iOS/EventApp/EventApp/NewEventTableViewController.swift"
+                  timestampString = "449360550.227737"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventApp.NewEventTableViewController.addCoverPhotoCellHeight.materializeForSet : CoreGraphics.CGFloat"
+                  moduleName = "EventApp"
+                  urlString = "file:///Users/Mike/Desktop/iOS/EventApp/EventApp/NewEventTableViewController.swift"
+                  timestampString = "449360550.227898"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventApp.NewEventTableViewController.init (EventApp.NewEventTableViewController.Type)(style : C.UITableViewStyle) -&gt; EventApp.NewEventTableViewController"
+                  moduleName = "EventApp"
+                  urlString = "file:///Users/Mike/Desktop/iOS/EventApp/EventApp/NewEventTableViewController.swift"
+                  timestampString = "449360550.228013"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventApp.NewEventTableViewController.init (EventApp.NewEventTableViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; EventApp.NewEventTableViewController"
+                  moduleName = "EventApp"
+                  urlString = "file:///Users/Mike/Desktop/iOS/EventApp/EventApp/NewEventTableViewController.swift"
+                  timestampString = "449360550.228123"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventApp.NewEventTableViewController.init (EventApp.NewEventTableViewController.Type)() -&gt; EventApp.NewEventTableViewController"
+                  moduleName = "EventApp"
+                  urlString = "file:///Users/Mike/Desktop/iOS/EventApp/EventApp/NewEventTableViewController.swift"
+                  timestampString = "449360550.228229"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventApp.NewEventTableViewController.init (EventApp.NewEventTableViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; EventApp.NewEventTableViewController"
+                  moduleName = "EventApp"
+                  urlString = "file:///Users/Mike/Desktop/iOS/EventApp/EventApp/NewEventTableViewController.swift"
+                  timestampString = "449360550.228338"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

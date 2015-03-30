@@ -53,6 +53,7 @@
 		27CD97E21AB7820F004607B5 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DE1AB7820F004607B5 /* ParseFacebookUtils.framework */; };
 		27CD97E31AB7820F004607B5 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DF1AB7820F004607B5 /* ParseUI.framework */; };
 		27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CD97E61AB7C355004607B5 /* MapViewController.swift */; };
+		27D6CA071AC7CB1200858616 /* InspectEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		27CD97DE1AB7820F004607B5 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = SDKs/Parse/ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		27CD97DF1AB7820F004607B5 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = SDKs/Parse/ParseUI.framework; sourceTree = "<group>"; };
 		27CD97E61AB7C355004607B5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 		276D9DB41AB6824600DED04F = {
 			isa = PBXGroup;
 			children = (
+				27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */,
 				27CD97DC1AB7820F004607B5 /* Parse.framework */,
 				27CD97DD1AB7820F004607B5 /* ParseCrashReporting.framework */,
 				27CD97DE1AB7820F004607B5 /* ParseFacebookUtils.framework */,
@@ -404,6 +407,7 @@
 				27A337091AB802E500071040 /* AppDelegate.swift in Sources */,
 				27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */,
 				27AF0F4F1ABE7C89004B8C1C /* BrowseTableViewController.swift in Sources */,
+				27D6CA071AC7CB1200858616 /* InspectEventViewController.swift in Sources */,
 				273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */,
 				274550D21AB91B5D0074B4FF /* FeedTableViewController.swift in Sources */,
 				277F2C601ABFCCD4006EE584 /* UIViewExtension.swift in Sources */,
