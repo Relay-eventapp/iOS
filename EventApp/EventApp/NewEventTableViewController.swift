@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewEventTableViewController: UITableViewController {
+class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
     
     //cell heights
     var normalCellHeight: CGFloat!
@@ -23,6 +23,7 @@ class NewEventTableViewController: UITableViewController {
     @IBOutlet weak var descriptionField: UITextField!
     
     //Event Types
+    
     @IBOutlet weak var publicTypeButton: UIButton!
     @IBOutlet weak var privateTypeButton: UIButton!
     @IBOutlet weak var protectedTypeButton: UIButton!
@@ -37,7 +38,7 @@ class NewEventTableViewController: UITableViewController {
     @IBOutlet weak var startsDatePickerCell: UITableViewCell!
     var startsDatePicker: UIDatePicker = UIDatePicker()
     var startsDatePickerSwitch = false
-    var startTime = NSDate()
+    var startTime: NSDate!
     
     //end time variables
     var endsInfoCellRow = 7
@@ -47,7 +48,7 @@ class NewEventTableViewController: UITableViewController {
     @IBOutlet weak var endsDatePickerCell: UITableViewCell!
     var endsDatePicker: UIDatePicker = UIDatePicker()
     var endsDatePickerSwitch = false
-    var endTime = NSDate()
+    var endTime: NSDate!
     
     //other variables
     @IBOutlet weak var doneButton: UIButton!
@@ -60,20 +61,19 @@ class NewEventTableViewController: UITableViewController {
         
         println("\nNew Event Table View Controller View:")
         
-        //set up the event type buttons
-        publicTypeButton.addTarget(self, action: "setEventType:", forControlEvents: UIControlEvents.TouchUpInside)
-        privateTypeButton.addTarget(self, action: "setEventType:", forControlEvents: UIControlEvents.TouchUpInside)
-        protectedTypeButton.addTarget(self, action: "setEventType:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.nameField.delegate = self
+        self.descriptionField.delegate = self
+        var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        tableView.addGestureRecognizer(tap)
         
         //format start and end time cells
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
         formatter.timeStyle = .ShortStyle
         
-        startTimeLabel.text = formatter.stringFromDate(startTime)
-        
-        formatter.dateStyle = .NoStyle
+        startTime = NSDate()
         endTime = startTime.dateByAddingTimeInterval(timeInterval)
+        startTimeLabel.text = formatter.stringFromDate(startTime)
         endTimeLabel.text = formatter.stringFromDate(endTime)
         
         //set up the cell heights
@@ -84,92 +84,63 @@ class NewEventTableViewController: UITableViewController {
         doneButtonCellHeight = 1.5*self.tableView.frame.height/13
         expandedCellHeight = 220.0
         
+        //set up the type buttons
+        publicTypeButton.layer.cornerRadius = 21
+        privateTypeButton.layer.cornerRadius = 21
+        protectedTypeButton.layer.cornerRadius = 21
+        //publicTypeButton.addTarget(self, action: "setEventType:", forControlEvents: .TouchUpInside)
+        
         //set up the done button
-        doneButton.addTarget(self.revealViewController(), action:Selector("doneButtonPressed:"), forControlEvents: .TouchUpInside)
+        doneButton.addTarget(self.revealViewController(), action: "doneButtonPressed:", forControlEvents: .TouchUpInside)
         doneButton.layer.cornerRadius = 5
         
         //hide extraneous cells
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    //set the event type when an event type button is pressed
-    func setEventType(sender: UIButton!)
-    {
-        switch eventType {
-        case publicTypeButton:
-            eventType = 0
-            println("event type set to public")
-        case privateTypeButton:
-            eventType = 1
-            println("event type set to private")
-        case protectedTypeButton:
-            eventType = 2
-            println("event type set to protected")
-        default:
-            eventType = 0
-        }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
-    //create an event when the done button is pressed
-    func doneButtonPressed(sender: UIButton)
-    {
-        if(nameField.text != "")
-        {
-            println("Calling Create New Event.")
-            var location = PFGeoPoint(latitude: newEventLocation.latitude, longitude: newEventLocation.longitude)
-            createNewEvent(nameField.text, location: location, description: descriptionField.text)
-        }
-        else
-        {
-            println("No information provided. Exiting View.")
-        }
+    func DismissKeyboard(){
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        tableView.endEditing(true)
     }
     
-    //function called when the user creates an event
-    func createNewEvent(name: String, location: PFGeoPoint, description: String)
-    {
-        //check if the user has signed in
-        if(PFUser.currentUser() != nil)
+    //checks if the user has edited a text field
+    func textFieldDidFinishEditing(textField: UITextField) {
+        
+        if textField == nameField
         {
-            //create new event
-            var newEvent = PFObject(className: "Events")
-            
-            //set name and description of event
-            newEvent.setObject(name, forKey: "name")
-            newEvent.setObject(description, forKey: "description")
-            
-            //set location of event
-            newEvent.setObject(location, forKey: "location")
-            
-            //set type of event
-            newEvent.setObject(eventType, forKey: "type")
-            
-            //set icon and popup images for event
-            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "icon")
-            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "popup")
-            
-            newEvent.saveInBackgroundWithBlock {
-                (success: Bool!, error: NSError!) -> Void in
-                if success == true {
-                    println("Created New Event: \(name)")
-                }
-                else
-                {
-                    println(error)
-                }
-                
+            if(nameField.text != "")
+            {
+                doneButton.titleLabel?.text = "Done"
+                doneButton.backgroundColor = UIColor.greenColor()
+            }
+            else
+            {
+                doneButton.titleLabel?.text = "Cancel"
+                doneButton.backgroundColor = UIColor.redColor()
             }
         }
-        else
-        {
-            println("User not signed in.")
-        }
     }
     
-    //if the user taps a certain cell
+    //set the event type when an event type button is pressed
+    @IBAction func publicTypeButton(sender: UIButton) {
+        setEventType(publicTypeButton)
+    }
+    
+    @IBAction func privateTypeButton(sender: UIButton) {
+        setEventType(privateTypeButton)
+    }
+    
+    @IBAction func protectedTypeButton(sender: UIButton) {
+        setEventType(protectedTypeButton)
+    }
+    
+    //checks if the user taps a cell
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = UITableViewCellSelectionStyle.None
         
         //if the user taps the "starts" info cell
         if (indexPath.row == startsInfoCellRow)
@@ -209,6 +180,7 @@ class NewEventTableViewController: UITableViewController {
         
     }
     
+    //sets the height for each row in the table view
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         switch indexPath.row {
@@ -237,6 +209,7 @@ class NewEventTableViewController: UITableViewController {
         }
     }
     
+    //starts date picker functions
     func expandStartsDatePickerCell()
     {
         println("showing Starts Date Picker")
@@ -257,6 +230,7 @@ class NewEventTableViewController: UITableViewController {
         startsDatePicker.removeFromSuperview()
     }
     
+    //ends date picker functions
     func expandEndsDatePickerCell()
     {
         println("showing Ends Date Picker")
@@ -277,6 +251,7 @@ class NewEventTableViewController: UITableViewController {
         endsDatePicker.removeFromSuperview()
     }
     
+    //update the start and end time
     func updateTimeInterval()
     {
         var timeFormatter = NSDateFormatter()
@@ -284,6 +259,93 @@ class NewEventTableViewController: UITableViewController {
         timeFormatter.timeStyle = .ShortStyle
         startTimeLabel.text = timeFormatter.stringFromDate(startTime)
         endTimeLabel.text = timeFormatter.stringFromDate(endTime)
+    }
+    
+    //sets the event type
+    func setEventType(sender: UIButton)
+    {
+        //let selectedColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
+        
+        publicTypeButton.backgroundColor = UIColor.clearColor()
+        privateTypeButton.backgroundColor = UIColor.clearColor()
+        protectedTypeButton.backgroundColor = UIColor.clearColor()
+        
+        switch sender {
+        case publicTypeButton:
+            eventType = 0
+            publicTypeButton.backgroundColor = UIColor.lightGrayColor()
+            println("public")
+        case privateTypeButton:
+            println("private")
+            eventType = 1
+            privateTypeButton.backgroundColor = UIColor.lightGrayColor()
+        case protectedTypeButton:
+            println("protected")
+            eventType = 2
+            protectedTypeButton.backgroundColor = UIColor.lightGrayColor()
+        default:
+            println("default")
+        }
+    }
+    
+    //create an event when the done button is pressed
+    func doneButtonPressed(sender: UIButton)
+    {
+        if(nameField.text != "")
+        {
+            println("Calling Create New Event.")
+            var location = PFGeoPoint(latitude: newEventLocation.latitude, longitude: newEventLocation.longitude)
+            createNewEvent(nameField.text, location: location, description: descriptionField.text)
+        }
+        else
+        {
+            println("No information provided. Exiting View.")
+        }
+    }
+    
+    //creates the event and sends it to the Parse backend
+    func createNewEvent(name: String, location: PFGeoPoint, description: String)
+    {
+        //check if the user has signed in
+        if(PFUser.currentUser() != nil)
+        {
+            //create new event
+            var newEvent = PFObject(className: "Events")
+            
+            //set name and description of event
+            newEvent.setObject(name, forKey: "name")
+            newEvent.setObject(description, forKey: "description")
+            
+            //set location of event
+            newEvent.setObject(location, forKey: "location")
+            
+            //set type of event
+            newEvent.setObject(eventType, forKey: "type")
+            
+            //set start and end time of event
+            newEvent.setObject(startTimeLabel.text, forKey: "startTime")
+            newEvent.setObject(endTimeLabel.text, forKey: "endTime")
+            
+            //set icon and popup images for event
+            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "icon")
+            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "popup")
+            
+            newEvent.saveInBackgroundWithBlock {
+                (success: Bool!, error: NSError!) -> Void in
+                if success == true {
+                    println("Created New Event: \(name)")
+                }
+                else
+                {
+                    println(error)
+                }
+                
+            }
+        }
+        else
+        {
+            println("User not signed in.")
+        }
     }
     
     override func didReceiveMemoryWarning() {
