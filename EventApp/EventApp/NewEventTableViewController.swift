@@ -63,8 +63,8 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
         
         self.nameField.delegate = self
         self.descriptionField.delegate = self
-        var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-        tableView.addGestureRecognizer(tap)
+        //var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        //tableView.addGestureRecognizer(tap)
         
         //format start and end time cells
         let formatter = NSDateFormatter()

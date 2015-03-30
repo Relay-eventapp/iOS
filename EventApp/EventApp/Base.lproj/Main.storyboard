@@ -168,14 +168,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRO-8U-OSd" userLabel="Name:">
-                                                    <rect key="frame" x="8" y="8" width="63" height="39"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7E2-BW-7aN" userLabel="nameField">
-                                                    <rect key="frame" x="79" y="8" width="288" height="39"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7E2-BW-7aN" userLabel="nameField">
+                                                    <rect key="frame" x="8" y="8" width="359" height="39"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -183,12 +177,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="7E2-BW-7aN" firstAttribute="top" secondItem="Sdk-8X-6Zd" secondAttribute="topMargin" id="2xR-cb-wDD"/>
-                                                <constraint firstItem="jRO-8U-OSd" firstAttribute="leading" secondItem="Sdk-8X-6Zd" secondAttribute="leadingMargin" id="9uM-Ob-NoN"/>
-                                                <constraint firstItem="7E2-BW-7aN" firstAttribute="leading" secondItem="Sdk-8X-6Zd" secondAttribute="leadingMargin" constant="71" id="RtG-rH-5vQ"/>
+                                                <constraint firstItem="7E2-BW-7aN" firstAttribute="leading" secondItem="Sdk-8X-6Zd" secondAttribute="leadingMargin" id="RtG-rH-5vQ"/>
                                                 <constraint firstItem="7E2-BW-7aN" firstAttribute="trailing" secondItem="Sdk-8X-6Zd" secondAttribute="trailingMargin" id="Vr0-dk-Te6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="7E2-BW-7aN" secondAttribute="bottom" id="aS1-nU-SVW"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="jRO-8U-OSd" secondAttribute="bottom" id="er7-yX-Jgi"/>
-                                                <constraint firstItem="jRO-8U-OSd" firstAttribute="top" secondItem="Sdk-8X-6Zd" secondAttribute="topMargin" id="mZb-nQ-dzA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -200,27 +191,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9M-KW-BHP">
-                                                    <rect key="frame" x="8" y="8" width="112.5" height="39"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDd-hS-9DK" userLabel="descriptionField">
-                                                    <rect key="frame" x="129" y="8" width="238" height="39"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDd-hS-9DK" userLabel="descriptionField">
+                                                    <rect key="frame" x="8" y="8" width="359" height="39"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="q9M-KW-BHP" secondAttribute="bottom" id="5TH-e7-GJM"/>
                                                 <constraint firstItem="JDd-hS-9DK" firstAttribute="top" secondItem="0dc-db-VQO" secondAttribute="topMargin" id="ETP-XY-tYn"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="JDd-hS-9DK" secondAttribute="bottom" id="aI1-w8-nbT"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="JDd-hS-9DK" secondAttribute="trailing" id="jY3-yo-kce"/>
-                                                <constraint firstItem="q9M-KW-BHP" firstAttribute="top" secondItem="0dc-db-VQO" secondAttribute="topMargin" id="mg9-GW-Rvb"/>
-                                                <constraint firstItem="JDd-hS-9DK" firstAttribute="leading" secondItem="0dc-db-VQO" secondAttribute="leadingMargin" constant="121" id="taP-Ib-Trx"/>
-                                                <constraint firstItem="q9M-KW-BHP" firstAttribute="leading" secondItem="0dc-db-VQO" secondAttribute="leadingMargin" id="zez-5F-IBQ"/>
+                                                <constraint firstItem="JDd-hS-9DK" firstAttribute="leading" secondItem="0dc-db-VQO" secondAttribute="leadingMargin" id="taP-Ib-Trx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
