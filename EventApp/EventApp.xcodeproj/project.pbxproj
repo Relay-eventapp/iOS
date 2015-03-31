@@ -291,9 +291,9 @@
 				274550CD1AB8C9370074B4FF /* SWRevealViewController */,
 				273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */,
 				274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */,
-				27AF0F4E1ABE7C89004B8C1C /* BrowseTableViewController.swift */,
 				27CD97E61AB7C355004607B5 /* MapViewController.swift */,
 				2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */,
+				27AF0F4E1ABE7C89004B8C1C /* BrowseTableViewController.swift */,
 				274550D11AB91B5D0074B4FF /* FeedTableViewController.swift */,
 				27AF0F501ABE9E36004B8C1C /* FeedTableViewCell.swift */,
 			);

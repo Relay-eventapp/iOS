@@ -48,13 +48,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         //initialize the menu button
         menuButton.setImage(menuButtonImage, forState: .Normal)
         menuButton.frame = CGRectMake(8, 16+1, 42, 42)
-        menuButton.layer.cornerRadius = 25
         self.view.addSubview(menuButton)
         
         //initialize the filter events button
         filterEventsButton.setImage(filterEventsButtonImage, forState: .Normal)
         filterEventsButton.frame = CGRectMake(self.view.frame.width - 8 - 42, 16, 42, 42)
-        filterEventsButton.layer.cornerRadius = 25
         self.view.addSubview(filterEventsButton)
         
         //set up the menu button for transitions

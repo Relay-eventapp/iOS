@@ -109,19 +109,22 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     //checks if the user has edited a text field
-    func textFieldDidFinishEditing(textField: UITextField) {
+    func textFieldDidEndEditing(textField: UITextField) {
         
         if textField == nameField
         {
             if(nameField.text != "")
             {
-                doneButton.titleLabel?.text = "Done"
-                doneButton.backgroundColor = UIColor.greenColor()
+                //println("nameField not empty")
+                doneButton.setTitle("Done", forState: UIControlState.Normal)
+                //doneButton.backgroundColor = UIColor(red: 125, green: 195, blue: 85, alpha: 1.0)
+                //doneButton.backgroundColor = UIColor.greenColor()
             }
             else
             {
-                doneButton.titleLabel?.text = "Cancel"
-                doneButton.backgroundColor = UIColor.redColor()
+                doneButton.setTitle("Cancel", forState: UIControlState.Normal)
+                //doneButton.backgroundColor = UIColor(red: 189, green: 91, blue: 89, alpha: 1.0)
+                //doneButton.backgroundColor = UIColor.redColor()
             }
         }
     }
@@ -339,7 +342,6 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
                 {
                     println(error)
                 }
-                
             }
         }
         else
