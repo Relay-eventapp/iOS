@@ -27,6 +27,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var tappedLocation:CLLocationCoordinate2D!
     var didChangeCameraPosition:Bool!
     
+    //declare data structures :)
+    var markerDict = Dictionary<String, markerDictElement>()
+    
+    class markerDictElement {
+        var marker: GMSMarker
+        var updatedAt: NSDate
+        init(marker: GMSMarker, updatedAt: NSDate)
+        {
+            self.marker = marker
+            self.updatedAt = updatedAt
+        }
+    }
+    
     //Load the View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +49,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mapView.mapType = kGMSTypeNormal
         mapView.delegate = self
         
-        //TODO: set the map frame to be 20 px lower so no space is wasted
-        
+        //initialized the location manager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        
-        //initialize the navigation and address labels
-        navigationLabel.layer.masksToBounds = true
-        navigationLabel.layer.cornerRadius = 5
         
         //initialize the menu button
         menuButton.setImage(menuButtonImage, forState: .Normal)
@@ -59,8 +67,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         if self.revealViewController() != nil {
             
             menuButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
-         
-            self.revealViewController().rearViewRevealWidth = self.view.frame.width
+            
+            self.revealViewController().rearViewRevealWidth = 0.85*self.view.frame.width
         }
     }
     
@@ -72,13 +80,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
             println("\nMap View:")
         
-            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingLocation()
         
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         
             let labelHeight = self.addressLabel.frame.height
             self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
+        
+            //there should be a better way to do this
+            updateEventsInView(mapView.camera)
         //}
     }
     
@@ -103,7 +114,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         tappedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
         self.performSegueWithIdentifier("createNewEvent", sender: self)
     }
-    
     
     /*
     //return a custom info window
@@ -139,31 +149,50 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func updateEventsInView(position: GMSCameraPosition)
     {
-        println("updateEventsInView")
+        println("updating events...")
+        var eventsUpdated = 0
+        
         let view = PFGeoPoint(latitude: position.target.latitude, longitude: position.target.longitude)
+        
         var query = PFQuery(className:"Events")
         query.whereKey("location", nearGeoPoint: view, withinKilometers: 10)
-        query.limit = 10
-        let nearbyEvents = query.findObjects()
+        query.orderByDescending("priority")
+        query.limit = 20
         
+        let nearbyEvents = query.findObjects()
         for nearbyEvent in nearbyEvents {
             
             var name = nearbyEvent["name"] as String
-            var location = nearbyEvent["location"] as PFGeoPoint
             var description = nearbyEvent["description"] as String
+            var location = CLLocationCoordinate2D(latitude: (nearbyEvent["location"] as PFGeoPoint).latitude, longitude: (nearbyEvent["location"] as PFGeoPoint).longitude)
+            
+            var objectId = nearbyEvent.objectId
+            var updatedAt = nearbyEvent.updatedAt
+            
             var popup = nearbyEvent["popup"] as Int
             var icon = nearbyEvent["icon"] as Int
             
-            var markerLocation = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            var marker = GMSMarker(position: markerLocation)
             
-            marker.icon = createMarkerIcon("popup\(popup)", icon: "icon\(icon)")
-            marker.title = name
-            marker.snippet = description
-            marker.map = mapView
+            //if the event doesn't exist in the local database or has been modified
+            if((markerDict[objectId] == nil) || (markerDict[objectId]?.updatedAt) != updatedAt)
+            {
+                println("updating event: \(objectId)")
+                var marker = GMSMarker(position: location)
+                marker.title = name
+                marker.snippet = description
+                marker.icon = createMarkerIcon("popup\(popup)", icon: "icon\(icon)")
+                marker.appearAnimation = kGMSMarkerAnimationPop
+                marker.map = mapView
+                
+                //add that to the local database
+                markerDict[objectId] = markerDictElement(marker: marker, updatedAt: updatedAt)
+                eventsUpdated += 1
+                
+                //sleep(1)
+            }
             
-            //println("Nearby Event: <\(name)> at \(location)")
         }
+        println("updated \(eventsUpdated) event(s).")
     }
     
     //Reverse a CLLocationCoordinate 2D and return an address as String
@@ -182,6 +211,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 UIView.animateWithDuration(0.25) {
                     self.view.layoutIfNeeded()
                 }
+                
             }
         }
     }
@@ -207,11 +237,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    //create the marker icon
     func createMarkerIcon(popup: String!, icon: String!) -> UIImage
     {
         var bottomImage = UIImage(named: popup) //background image
@@ -228,5 +254,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         UIGraphicsEndImageContext()
         
         return combinedImage
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

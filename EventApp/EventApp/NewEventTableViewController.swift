@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
+class NewEventTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     //cell heights
     var normalCellHeight: CGFloat!
@@ -17,18 +17,22 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
     var addCoverPhotoCellHeight: CGFloat!
     var doneButtonCellHeight: CGFloat!
     var expandedCellHeight: CGFloat!
-
+    
+    //Add Cover Photo
+    var addCoverPhotoCellRow = 1
+    @IBOutlet weak var coverPhoto: UIImageView!
+    var imagePicked: Bool!
+    
     //Event Name and Description
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
     
     //Event Types
-    
     @IBOutlet weak var publicTypeButton: UIButton!
     @IBOutlet weak var privateTypeButton: UIButton!
     @IBOutlet weak var protectedTypeButton: UIButton!
     //0 for public, 1 for private, and 2 for protected
-    var eventType:Int = 0
+    var eventType: Int!
     
     //start time variables
     var startsInfoCellRow = 5
@@ -65,6 +69,17 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
         self.descriptionField.delegate = self
         //var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         //tableView.addGestureRecognizer(tap)
+        
+        //round the cover photo image view
+        println("cover photo size: \(coverPhoto.frame.size)")
+        coverPhoto.layer.cornerRadius = coverPhoto.frame.height/2 + 14
+        coverPhoto.clipsToBounds = true
+        coverPhoto.layer.borderWidth = 3.0
+        coverPhoto.layer.borderColor = UIColor(red: 240, green: 240, blue: 240, alpha: 1).CGColor
+        
+        //set default event type to be public
+        eventType = 0
+        publicTypeButton.backgroundColor = UIColor.lightGrayColor()
         
         //format start and end time cells
         let formatter = NSDateFormatter()
@@ -142,9 +157,28 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
         setEventType(protectedTypeButton)
     }
     
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        println("cover photo selected")
+        self.dismissViewControllerAnimated(true, completion: nil)
+        coverPhoto.image = image
+        imagePicked = true
+    }
     //checks if the user taps a cell
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        //if the user taps the "add cover photo" cell
+        if(indexPath.row == addCoverPhotoCellRow)
+        {
+            println("adding cover photo")
+            var imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            //imagePicker.sourceType = UIImagePickerControllerSourceType.Camera <- to get access to camera
+            imagePicker.allowsEditing = true
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+            
+        }
         //if the user taps the "starts" info cell
         if (indexPath.row == startsInfoCellRow)
         {
@@ -163,7 +197,7 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
             tableView.endUpdates()
         }
         
-        //if the user taps the "starts" info cell
+        //if the user taps the "ends" info cell
         if (indexPath.row == endsInfoCellRow)
         {
             endsDatePickerSwitch = !endsDatePickerSwitch
@@ -267,8 +301,6 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
     //sets the event type
     func setEventType(sender: UIButton)
     {
-        //let selectedColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
-        
         publicTypeButton.backgroundColor = UIColor.clearColor()
         privateTypeButton.backgroundColor = UIColor.clearColor()
         protectedTypeButton.backgroundColor = UIColor.clearColor()
@@ -315,9 +347,22 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
             //create new event
             var newEvent = PFObject(className: "Events")
             
+            //set cover photo of event
+            if(imagePicked == true)
+            {
+                let imageData = UIImagePNGRepresentation(coverPhoto.image)
+                let imageFile = PFFile(name:"image.png", data:imageData)
+                newEvent.setObject(imageFile, forKey: "coverPhoto")
+            }
+            
             //set name and description of event
             newEvent.setObject(name, forKey: "name")
             newEvent.setObject(description, forKey: "description")
+            
+            //set priority of event
+            newEvent.setObject(Int(arc4random_uniform(100))+1, forKey: "priority")
+            //save the user's id as the creator of the event
+            newEvent.setObject(PFUser.currentUser().objectId, forKey: "creator")
             
             //set location of event
             newEvent.setObject(location, forKey: "location")
@@ -330,13 +375,13 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate {
             newEvent.setObject(endTimeLabel.text, forKey: "endTime")
             
             //set icon and popup images for event
-            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "icon")
+            newEvent.setObject(Int(arc4random_uniform(9)), forKey: "icon")
             newEvent.setObject(Int(arc4random_uniform(11)), forKey: "popup")
             
             newEvent.saveInBackgroundWithBlock {
                 (success: Bool!, error: NSError!) -> Void in
                 if success == true {
-                    println("Created New Event: \(name)")
+                    //println("created new event")
                 }
                 else
                 {
