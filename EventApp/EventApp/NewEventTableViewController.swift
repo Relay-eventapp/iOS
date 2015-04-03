@@ -69,13 +69,13 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
         self.descriptionField.delegate = self
         //var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         //tableView.addGestureRecognizer(tap)
+        imagePicked = false
         
         //round the cover photo image view
-        println("cover photo size: \(coverPhoto.frame.size)")
-        coverPhoto.layer.cornerRadius = coverPhoto.frame.height/2 + 14
+        coverPhoto.layer.cornerRadius = coverPhoto.frame.height/2
         coverPhoto.clipsToBounds = true
         coverPhoto.layer.borderWidth = 3.0
-        coverPhoto.layer.borderColor = UIColor(red: 240, green: 240, blue: 240, alpha: 1).CGColor
+        coverPhoto.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1).CGColor
         
         //set default event type to be public
         eventType = 0
@@ -132,14 +132,13 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
             {
                 //println("nameField not empty")
                 doneButton.setTitle("Done", forState: UIControlState.Normal)
-                //doneButton.backgroundColor = UIColor(red: 125, green: 195, blue: 85, alpha: 1.0)
+                doneButton.backgroundColor = UIColor(red: 125/255.0, green: 195/255.0, blue: 85/255.0, alpha: 1.0)
                 //doneButton.backgroundColor = UIColor.greenColor()
             }
             else
             {
                 doneButton.setTitle("Cancel", forState: UIControlState.Normal)
-                //doneButton.backgroundColor = UIColor(red: 189, green: 91, blue: 89, alpha: 1.0)
-                //doneButton.backgroundColor = UIColor.redColor()
+                doneButton.backgroundColor = UIColor(red: 189/255.0, green: 91/255.0, blue: 89/255.0, alpha: 1.0)
             }
         }
     }
@@ -381,7 +380,7 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
             newEvent.saveInBackgroundWithBlock {
                 (success: Bool!, error: NSError!) -> Void in
                 if success == true {
-                    //println("created new event")
+                    println("created event: \(newEvent.objectId)")
                 }
                 else
                 {

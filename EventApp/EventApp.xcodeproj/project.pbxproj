@@ -10,8 +10,6 @@
 		2732FCAF1AC0AF9C0024522D /* NewEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */; };
 		273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */; };
 		274550CC1AB8AC260074B4FF /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */; };
-		274550D01AB8C9820074B4FF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 274550CF1AB8C9820074B4FF /* SWRevealViewController.m */; };
-		274550D21AB91B5D0074B4FF /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274550D11AB91B5D0074B4FF /* FeedTableViewController.swift */; };
 		276D9DC81AB6824700DED04F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC61AB6824700DED04F /* Main.storyboard */; };
 		276D9DCA1AB6824700DED04F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC91AB6824700DED04F /* Images.xcassets */; };
 		276D9DCD1AB6824700DED04F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DCB1AB6824700DED04F /* LaunchScreen.xib */; };
@@ -42,8 +40,6 @@
 		27A7DE5A1AB6876400B75443 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE591AB6876400B75443 /* libsqlite3.dylib */; };
 		27A7DE5D1AB68C1A00B75443 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE5C1AB68C1A00B75443 /* Accounts.framework */; };
 		27A7DE5F1AB68C1F00B75443 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE5E1AB68C1F00B75443 /* Social.framework */; };
-		27AF0F4F1ABE7C89004B8C1C /* BrowseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AF0F4E1ABE7C89004B8C1C /* BrowseTableViewController.swift */; };
-		27AF0F511ABE9E36004B8C1C /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AF0F501ABE9E36004B8C1C /* FeedTableViewCell.swift */; };
 		27CD97D51AB7819B004607B5 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97D41AB7819B004607B5 /* FacebookSDK.framework */; };
 		27CD97D71AB781EB004607B5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97D61AB781EB004607B5 /* GoogleMaps.framework */; };
 		27CD97D91AB781F5004607B5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 27CD97D81AB781F5004607B5 /* GoogleMaps.bundle */; };
@@ -54,6 +50,7 @@
 		27CD97E31AB7820F004607B5 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DF1AB7820F004607B5 /* ParseUI.framework */; };
 		27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CD97E61AB7C355004607B5 /* MapViewController.swift */; };
 		27D6CA071AC7CB1200858616 /* InspectEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */; };
+		27FAF5A51ACDAE9100C2D193 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +67,6 @@
 		2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventTableViewController.swift; sourceTree = "<group>"; };
 		273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = ../MenuTableViewController.swift; sourceTree = "<group>"; };
-		274550CE1AB8C9820074B4FF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		274550CF1AB8C9820074B4FF /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		274550D11AB91B5D0074B4FF /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		276D9DBD1AB6824700DED04F /* EventApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		276D9DC11AB6824700DED04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276D9DC71AB6824700DED04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,8 +102,6 @@
 		27A7DE5C1AB68C1A00B75443 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		27A7DE5E1AB68C1F00B75443 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		27A7DE6A1AB69FBC00B75443 /* EventApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventApp-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		27AF0F4E1ABE7C89004B8C1C /* BrowseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseTableViewController.swift; sourceTree = "<group>"; };
-		27AF0F501ABE9E36004B8C1C /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		27CD97D41AB7819B004607B5 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		27CD97D61AB781EB004607B5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = SDKs/GoogleMaps.framework; sourceTree = "<group>"; };
 		27CD97D81AB781F5004607B5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = SDKs/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
@@ -120,6 +112,8 @@
 		27CD97DF1AB7820F004607B5 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = SDKs/Parse/ParseUI.framework; sourceTree = "<group>"; };
 		27CD97E61AB7C355004607B5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEventViewController.swift; sourceTree = "<group>"; };
+		27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,15 +181,6 @@
 			name = Xibs;
 			sourceTree = "<group>";
 		};
-		274550CD1AB8C9370074B4FF /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				274550CE1AB8C9820074B4FF /* SWRevealViewController.h */,
-				274550CF1AB8C9820074B4FF /* SWRevealViewController.m */,
-			);
-			name = SWRevealViewController;
-			sourceTree = "<group>";
-		};
 		276D9DB41AB6824600DED04F = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +233,8 @@
 		276D9DBF1AB6824700DED04F /* EventApp */ = {
 			isa = PBXGroup;
 			children = (
+				27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */,
+				27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */,
 				276D9DC91AB6824700DED04F /* Images.xcassets */,
 				27A7DE6A1AB69FBC00B75443 /* EventApp-Bridging-Header.h */,
 				27A337081AB802E500071040 /* AppDelegate.swift */,
@@ -288,14 +275,10 @@
 		277F2C651ABFD68C006EE584 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				274550CD1AB8C9370074B4FF /* SWRevealViewController */,
 				273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */,
 				274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */,
 				27CD97E61AB7C355004607B5 /* MapViewController.swift */,
 				2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */,
-				27AF0F4E1ABE7C89004B8C1C /* BrowseTableViewController.swift */,
-				274550D11AB91B5D0074B4FF /* FeedTableViewController.swift */,
-				27AF0F501ABE9E36004B8C1C /* FeedTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -403,18 +386,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27AF0F511ABE9E36004B8C1C /* FeedTableViewCell.swift in Sources */,
 				27A337091AB802E500071040 /* AppDelegate.swift in Sources */,
 				27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */,
-				27AF0F4F1ABE7C89004B8C1C /* BrowseTableViewController.swift in Sources */,
 				27D6CA071AC7CB1200858616 /* InspectEventViewController.swift in Sources */,
 				273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */,
-				274550D21AB91B5D0074B4FF /* FeedTableViewController.swift in Sources */,
 				277F2C601ABFCCD4006EE584 /* UIViewExtension.swift in Sources */,
 				274550CC1AB8AC260074B4FF /* MenuTableViewController.swift in Sources */,
 				277F2C6C1AC004E5006EE584 /* CustomInfoWindow.swift in Sources */,
 				2732FCAF1AC0AF9C0024522D /* NewEventTableViewController.swift in Sources */,
-				274550D01AB8C9820074B4FF /* SWRevealViewController.m in Sources */,
+				27FAF5A51ACDAE9100C2D193 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

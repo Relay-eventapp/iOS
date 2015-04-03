@@ -39,6 +39,7 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
         else
         {
             self.dismissViewControllerAnimated(true, completion: nil)
+            //performSegueWithIdentifier("goToMap", sender: self)
         }
         
     }

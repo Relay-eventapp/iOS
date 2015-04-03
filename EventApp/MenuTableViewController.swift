@@ -9,32 +9,31 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegate {
-
+    
     let closeButton = UIButton()
     let closeButtonImage = UIImage(named: "close") as UIImage!
     
     let addEventButton = UIButton()
     let addEventButtonImage = UIImage(named: "add") as UIImage!
     
-    var logoutCellRow = 6
+    //"profile" cell outlets
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var additionalInfoLabel: UILabel!
+    
+    var logoutCellRow = 5
     var normalCellHeight: CGFloat!
     
     var cellName = ["Profile", "Map", "Discover", "Friends", "Chat", "Log out"]
-        
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        tableView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
-        
-        println(tableView.frame)
-        println(self.view.frame.width)
-        println(self.view.frame.height)
-        
         normalCellHeight = self.tableView.frame.height/10
         
-        self.tableView.separatorInset = UIEdgeInsetsZero
-        self.tableView.layoutMargins = UIEdgeInsetsZero
+        //self.tableView.separatorInset = UIEdgeInsetsZero
+        //self.tableView.layoutMargins = UIEdgeInsetsZero
         
         //initialize the close button
         closeButton.setImage(closeButtonImage, forState: .Normal)
@@ -46,43 +45,25 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
         addEventButton.frame = CGRectMake(self.view.frame.width - 8 - 42, 20, 42, 42)
         self.view.addSubview(addEventButton)
         
+        profilePicture.layer.cornerRadius = profilePicture.frame.height/2
+        profilePicture.clipsToBounds = true
+        profilePicture.layer.borderWidth = 3.0
+        profilePicture.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1).CGColor
+        
+        //hide extraneous cells
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
         if self.revealViewController() != nil {
             
             closeButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
             
+            //println(self.view.frame.width)
+            self.revealViewController().rearViewRevealWidth = self.view.frame.width
         }
-        
-        //hide extraneous cells
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    //alters the cell for each path
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
-        
-        cell.layoutMargins = UIEdgeInsetsZero
-        cell.selectionStyle = .None
-        cell.backgroundColor = UIColor.darkGrayColor()
-        cell.textLabel!.textColor = UIColor(red: 240, green: 240, blue: 240, alpha: 1.0)
-        cell.textLabel!.textAlignment = NSTextAlignment.Center
-        cell.textLabel!.text = cellName[indexPath.row]
-        
-        println(cell.frame.width)
-        
-        cell.textLabel!.frame = CGRectMake(cell.frame.minX, cell.frame.minY, cell.frame.width, cell.frame.height)
-        /*
-        switch indexPath.row {
-        case 0:
-            cell.textLabel!.frame = CGRectMake(cell.frame.minX, cell.frame.minY, cell.frame.width-25, cell.frame.height)
-        case 5:
-            cell.textLabel!.frame = CGRectMake(0, 0, cell.frame.width-25, cell.frame.height)
-        default:
-            cell.textLabel!.frame = CGRectMake(0, 0, cell.frame.width/3, cell.frame.height)
-        }
-        */
-
-        return cell
+    override func viewWillAppear(animated: Bool) {
+        tableView.frame = CGRectMake(0, 0, self.revealViewController().rearViewRevealWidth, 667)
     }
     
     //sets the height for each cell in the table view

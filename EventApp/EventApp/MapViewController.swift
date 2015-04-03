@@ -63,12 +63,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         filterEventsButton.frame = CGRectMake(self.view.frame.width - 8 - 42, 16, 42, 42)
         self.view.addSubview(filterEventsButton)
         
-        //set up the menu button for transitions
+        //TODO: connect with other view controllers
         if self.revealViewController() != nil {
             
+            self.revealViewController().rearViewRevealWidth = self.view.frame.width
             menuButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
+            //println(self.view.frame.width)
             
-            self.revealViewController().rearViewRevealWidth = 0.85*self.view.frame.width
         }
     }
     
