@@ -29,10 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Google Maps API Init
         GMSServices.provideAPIKey("AIzaSyDNT9Wg56nPImnKhY5DDZ50eOuvrTMljzQ")
         
-        //UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
-        //UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
-        self.window!.clipsToBounds = true
+        let PAWCurrentLocationDidChangeNotification: NSString = "PAWCurrentLocationDidChangeNotification"
         
         return true
     }

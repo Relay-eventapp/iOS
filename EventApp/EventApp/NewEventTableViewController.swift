@@ -103,7 +103,6 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
         publicTypeButton.layer.cornerRadius = 21
         privateTypeButton.layer.cornerRadius = 21
         protectedTypeButton.layer.cornerRadius = 21
-        //publicTypeButton.addTarget(self, action: "setEventType:", forControlEvents: .TouchUpInside)
         
         //set up the done button
         doneButton.addTarget(self.revealViewController(), action: "doneButtonPressed:", forControlEvents: .TouchUpInside)
@@ -130,15 +129,13 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
         {
             if(nameField.text != "")
             {
-                //println("nameField not empty")
                 doneButton.setTitle("Done", forState: UIControlState.Normal)
                 doneButton.backgroundColor = UIColor(red: 125/255.0, green: 195/255.0, blue: 85/255.0, alpha: 1.0)
-                //doneButton.backgroundColor = UIColor.greenColor()
             }
             else
             {
                 doneButton.setTitle("Cancel", forState: UIControlState.Normal)
-                doneButton.backgroundColor = UIColor(red: 189/255.0, green: 91/255.0, blue: 89/255.0, alpha: 1.0)
+                doneButton.backgroundColor = UIColor(red: 52/255.0, green: 92/255.0, blue: 125/255.0, alpha: 1.0)
             }
         }
     }

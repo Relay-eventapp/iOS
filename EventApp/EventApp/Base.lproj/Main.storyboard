@@ -115,8 +115,9 @@
                         <outlet property="addressLabel" destination="O3K-Ph-Yu9" id="aGG-Sp-vnD"/>
                         <outlet property="mapView" destination="PB5-qa-Hpp" id="mTh-hR-L9U"/>
                         <outlet property="navigationLabel" destination="77I-3m-Y5S" id="rvn-Ge-VU4"/>
+                        <outlet property="searchBar" destination="eAL-Ed-hsF" id="lLC-BN-JkH"/>
                         <outlet property="searchDisplayController" destination="yhi-jB-YBD" id="Acd-1E-o3S"/>
-                        <segue destination="iAP-t8-Xac" kind="modal" identifier="createNewEvent" id="1bp-HU-LJU"/>
+                        <segue destination="iAP-t8-Xac" kind="modal" identifier="mapCreateNewEvent" id="1bp-HU-LJU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -560,13 +561,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqH-p8-qt0" userLabel="x top">
                                                     <color key="backgroundColor" red="0.74117647060000003" green="0.35686274509999999" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJz-g1-Wl1" userLabel="x bot">
                                                     <color key="backgroundColor" red="0.74117647060000003" green="0.35686274509999999" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8dy-Wx-NGC" userLabel="profile picture">
@@ -583,7 +584,7 @@
                                                         <constraint firstAttribute="height" constant="22" id="iAY-lS-6qj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <color key="textColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olN-J9-zsH" userLabel="additional info">
@@ -620,6 +621,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.20784313730000001" green="0.36078431370000003" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="iAP-t8-Xac" kind="modal" identifier="menuCreateNewEvent" id="BQi-HD-aax"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4ao-Pb-cOf" userLabel="Map">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -791,4 +795,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="1bp-HU-LJU"/>
+    </inferredMetricsTieBreakers>
 </document>

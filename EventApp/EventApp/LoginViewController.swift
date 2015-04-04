@@ -29,19 +29,20 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
         if(PFUser.currentUser() == nil) {
             
             logInViewController.delegate = self
+            logInViewController.facebookPermissions = [ "public_profile", "email" ]
             
             signUpViewController.delegate = self
             
             logInViewController.signUpController = signUpViewController
             
+            logInViewController.logInView.facebookButton.addTarget(self, action: "logInWithFacebook", forControlEvents: .TouchUpInside)
+                
             presentLogInSignUpView()
         }
         else
         {
             self.dismissViewControllerAnimated(true, completion: nil)
-            //performSegueWithIdentifier("goToMap", sender: self)
         }
-        
     }
     
     //present the Login and Signup View
@@ -76,7 +77,13 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //Fall to Log In
+    //Log In with Facebook
+    func logInWithFacebook(sender: UIButton)
+    {
+        println("logged in with facebook!")
+    }
+    
+    //Fail to Log In
     func logInViewController(logInController: PFLogInViewController!, didFailToLogInWithError error: NSError!)
     {
         println("Failed to log in...")
@@ -87,7 +94,7 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
     {
         if let password = info?["password"] as? String
         {
-            return password.utf16Count >= 8
+            return password.utf16Count >= 4
         }
         else
         {

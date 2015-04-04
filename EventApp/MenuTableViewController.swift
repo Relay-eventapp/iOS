@@ -13,8 +13,10 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
     let closeButton = UIButton()
     let closeButtonImage = UIImage(named: "close") as UIImage!
     
+     /*
     let addEventButton = UIButton()
     let addEventButtonImage = UIImage(named: "add") as UIImage!
+    */
     
     //"profile" cell outlets
     @IBOutlet weak var profilePicture: UIImageView!
@@ -41,9 +43,19 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
         self.view.addSubview(closeButton)
         
         //initialize the filter events button
+        /*
         addEventButton.setImage(addEventButtonImage, forState: .Normal)
-        addEventButton.frame = CGRectMake(self.view.frame.width - 8 - 42, 20, 42, 42)
+        addEventButton.frame = CGRectMake(revealViewController().rearViewRevealWidth - 8 - 42, 20, 42, 42)
         self.view.addSubview(addEventButton)
+        */
+        
+        /*
+        if(PFUser.currentUser() != nil)
+        {
+            var userID = PFUser.currentUser()["facebookId"] as NSString
+            var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
+        }
+        */
         
         profilePicture.layer.cornerRadius = profilePicture.frame.height/2
         profilePicture.clipsToBounds = true
@@ -57,14 +69,23 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
             
             closeButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
             
-            //println(self.view.frame.width)
-            self.revealViewController().rearViewRevealWidth = self.view.frame.width
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         tableView.frame = CGRectMake(0, 0, self.revealViewController().rearViewRevealWidth, 667)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "menuCreateNewEvent"
+        {
+            println("Performing segue to New Event Table View.")
+            let vc = segue.destinationViewController as NewEventTableViewController
+            vc.newEventLocation = nil
+        }
+    }
+
     
     //sets the height for each cell in the table view
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -90,6 +111,11 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
                 println("User logged out.")
             }
         }
+    }
+    
+    func createNewEvent()
+    {
+        self.performSegueWithIdentifier("menuCreateNewEvent", sender: self)
     }
     
     override func didReceiveMemoryWarning() {

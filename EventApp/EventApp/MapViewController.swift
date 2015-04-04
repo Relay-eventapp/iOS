@@ -27,18 +27,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var tappedLocation:CLLocationCoordinate2D!
     var didChangeCameraPosition:Bool!
     
-    //declare data structures :)
-    var markerDict = Dictionary<String, markerDictElement>()
+    var localArr: NSMutableArray!
     
-    class markerDictElement {
-        var marker: GMSMarker
-        var updatedAt: NSDate
-        init(marker: GMSMarker, updatedAt: NSDate)
-        {
-            self.marker = marker
-            self.updatedAt = updatedAt
-        }
-    }
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //Load the View
     override func viewDidLoad() {
@@ -66,10 +57,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         //TODO: connect with other view controllers
         if self.revealViewController() != nil {
             
-            self.revealViewController().rearViewRevealWidth = self.view.frame.width
             menuButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
-            //println(self.view.frame.width)
-            
+            self.revealViewController().rearViewRevealWidth = 0.85*self.view.frame.width
         }
     }
     
@@ -89,14 +78,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             let labelHeight = self.addressLabel.frame.height
             self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
         
-            //there should be a better way to do this
             updateEventsInView(mapView.camera)
         //}
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == "createNewEvent"
+        if segue.identifier == "mapCreateNewEvent"
         {
             println("Performing segue to New Event Table View.")
             let vc = segue.destinationViewController as NewEventTableViewController
@@ -113,7 +101,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     {
         println("User tapped screen.")
         tappedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
-        self.performSegueWithIdentifier("createNewEvent", sender: self)
+        self.performSegueWithIdentifier("mapCreateNewEvent", sender: self)
     }
     
     /*
@@ -150,50 +138,35 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func updateEventsInView(position: GMSCameraPosition)
     {
-        println("updating events...")
-        var eventsUpdated = 0
+        var query = PFQuery(className: "Events")
+        
+        if(localArr.count == 0)
+        {
+            query.cachePolicy = PFCachePolicy.CacheThenNetwork
+        }
         
         let view = PFGeoPoint(latitude: position.target.latitude, longitude: position.target.longitude)
-        
-        var query = PFQuery(className:"Events")
         query.whereKey("location", nearGeoPoint: view, withinKilometers: 10)
         query.orderByDescending("priority")
         query.limit = 20
         
-        let nearbyEvents = query.findObjects()
-        for nearbyEvent in nearbyEvents {
-            
-            var name = nearbyEvent["name"] as String
-            var description = nearbyEvent["description"] as String
-            var location = CLLocationCoordinate2D(latitude: (nearbyEvent["location"] as PFGeoPoint).latitude, longitude: (nearbyEvent["location"] as PFGeoPoint).longitude)
-            
-            var objectId = nearbyEvent.objectId
-            var updatedAt = nearbyEvent.updatedAt
-            
-            var popup = nearbyEvent["popup"] as Int
-            var icon = nearbyEvent["icon"] as Int
-            
-            
-            //if the event doesn't exist in the local database or has been modified
-            if((markerDict[objectId] == nil) || (markerDict[objectId]?.updatedAt) != updatedAt)
-            {
-                println("updating event: \(objectId)")
-                var marker = GMSMarker(position: location)
-                marker.title = name
-                marker.snippet = description
-                marker.icon = createMarkerIcon("popup\(popup)", icon: "icon\(icon)")
-                marker.appearAnimation = kGMSMarkerAnimationPop
-                marker.map = mapView
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+            if error == nil {
                 
-                //add that to the local database
-                markerDict[objectId] = markerDictElement(marker: marker, updatedAt: updatedAt)
-                eventsUpdated += 1
+                //look for new or updated events
+                var newEvents = NSMutableArray(capacity: 20)
+                var allNewEvents = NSMutableArray(capacity: objects.count)
+                for object in objects
+                {
+                    
+                }
                 
-                //sleep(1)
+            } else {
+                // Log details of the failure
+                println("Error: \(error) \(error.userInfo!)")
             }
-            
         }
-        println("updated \(eventsUpdated) event(s).")
     }
     
     //Reverse a CLLocationCoordinate 2D and return an address as String
