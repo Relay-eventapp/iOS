@@ -24,10 +24,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     @IBOutlet weak var navigationLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
 
-    var tappedLocation:CLLocationCoordinate2D!
+    var pressedLocation:CLLocationCoordinate2D!
     var didChangeCameraPosition:Bool!
     
-    var localArr: NSMutableArray!
+    var currentEvents: NSMutableArray!
+    var currentMarkers: Dictionary <String, GMSMarker>!
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -35,14 +36,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //settings for the map view
+        currentEvents = NSMutableArray(capacity: 20)
+        currentMarkers = Dictionary <String, GMSMarker>()
+        
+        //initialize the location manager
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        //set up the map view
         mapView.settings.consumesGesturesInView = true
         mapView.mapType = kGMSTypeNormal
         mapView.delegate = self
-        
-        //initialized the location manager
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
         
         //initialize the menu button
         menuButton.setImage(menuButtonImage, forState: .Normal)
@@ -62,7 +66,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
     
         //TODO: find a way to implement this if statement
         
@@ -88,19 +92,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         {
             println("Performing segue to New Event Table View.")
             let vc = segue.destinationViewController as NewEventTableViewController
-            vc.newEventLocation = tappedLocation
+            vc.newEventLocation = pressedLocation
         }
     }
     
     @IBAction func unwindToMapViewController(sender: UIStoryboardSegue)
     {
+        updateEventsInView(mapView.camera)
         println("Unwinding to Map View.")
     }
     
-    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D)
-    {
-        println("User tapped screen.")
-        tappedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        pressedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
         self.performSegueWithIdentifier("mapCreateNewEvent", sender: self)
     }
     
@@ -138,35 +142,79 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func updateEventsInView(position: GMSCameraPosition)
     {
-        var query = PFQuery(className: "Events")
-        
-        if(localArr.count == 0)
-        {
-            query.cachePolicy = PFCachePolicy.CacheThenNetwork
-        }
-        
         let view = PFGeoPoint(latitude: position.target.latitude, longitude: position.target.longitude)
-        query.whereKey("location", nearGeoPoint: view, withinKilometers: 10)
+        
+        var query = PFQuery(className: "Events")
         query.orderByDescending("priority")
+        //query.fromLocalDatastore()
+        query.whereKey("location", nearGeoPoint: view, withinKilometers: 10)
         query.limit = 20
         
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil {
-                
-                //look for new or updated events
+        query.findObjectsInBackgroundWithBlock
+        { (objects: [AnyObject]!, error: NSError!) -> Void in
+            
+            if(error == nil)
+            {
+                var updatedEvents = NSMutableArray(capacity: 20)
                 var newEvents = NSMutableArray(capacity: 20)
-                var allNewEvents = NSMutableArray(capacity: objects.count)
-                for object in objects
-                {
+                var eventsToRemove = NSMutableArray(capacity: 20)
+                
+                //search for new events
+                for event in objects {
                     
+                    var updatedEvent = event as PFObject
+                    updatedEvents.addObject(updatedEvent)
+                    
+                    //add new events to the newEvents array
+                    if(!self.currentEvents.containsObject(updatedEvent))
+                    {
+                        newEvents.addObject(updatedEvent)
+                    }
                 }
                 
-            } else {
-                // Log details of the failure
-                println("Error: \(error) \(error.userInfo!)")
+                //add events that are no longer needed to the eventsToRemove array
+                for event in self.currentEvents {
+                    
+                    if(!updatedEvents.containsObject(event))
+                    {
+                        eventsToRemove.addObject(event)
+                    }
+                }
+                
+                for newEvent in newEvents {
+                    
+                    var name = newEvent["name"] as String
+                    var description = newEvent["description"] as String
+                    var location = CLLocationCoordinate2D(latitude: (newEvent["location"] as PFGeoPoint).latitude, longitude: (newEvent["location"] as PFGeoPoint).longitude)
+                    
+                    var popup = newEvent["popup"] as Int
+                    var icon = newEvent["icon"] as Int
+                    
+                    var marker = GMSMarker(position: location)
+                    marker.title = name
+                    marker.snippet = description
+                    marker.icon = self.createMarkerIcon("popup\(popup)", icon: "icon\(icon)")
+                    marker.appearAnimation = kGMSMarkerAnimationPop
+                    marker.map = self.mapView
+                    
+                    self.currentMarkers[newEvent.objectId] = marker
+                }
+                
+                self.currentEvents.removeObjectsInArray(eventsToRemove)
+                self.currentEvents.addObjectsFromArray(newEvents)
+                
+                for removeEvent in eventsToRemove {
+                 
+                    let removeMarker: GMSMarker = self.currentMarkers[removeEvent.objectId]!
+                    removeMarker.map = nil
+                }
+            }
+            else
+            {
+                println("Error: \(error)")
             }
         }
+
     }
     
     //Reverse a CLLocationCoordinate 2D and return an address as String
