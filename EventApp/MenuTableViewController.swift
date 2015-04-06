@@ -42,13 +42,6 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
         closeButton.frame = CGRectMake(8, 20, 42, 42)
         self.view.addSubview(closeButton)
         
-        //initialize the filter events button
-        /*
-        addEventButton.setImage(addEventButtonImage, forState: .Normal)
-        addEventButton.frame = CGRectMake(revealViewController().rearViewRevealWidth - 8 - 42, 20, 42, 42)
-        self.view.addSubview(addEventButton)
-        */
-        
         /*
         if(PFUser.currentUser() != nil)
         {
@@ -69,23 +62,20 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
             
             closeButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
             
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
     }
     
     override func viewWillAppear(animated: Bool) {
-        tableView.frame = CGRectMake(0, 0, self.revealViewController().rearViewRevealWidth, 667)
+        
+        revealViewController().frontViewController.view.userInteractionEnabled = false
+        tableView.frame = CGRectMake(0, 0, self.revealViewController().rearViewRevealWidth, self.tableView.frame.height)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func viewWillDisappear(animated: Bool) {
         
-        if segue.identifier == "menuCreateNewEvent"
-        {
-            println("Performing segue to New Event Table View.")
-            let vc = segue.destinationViewController as NewEventTableViewController
-            vc.newEventLocation = nil
-        }
+        revealViewController().frontViewController.view.userInteractionEnabled = true
     }
-
     
     //sets the height for each cell in the table view
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -111,11 +101,6 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
                 println("User logged out.")
             }
         }
-    }
-    
-    func createNewEvent()
-    {
-        self.performSegueWithIdentifier("menuCreateNewEvent", sender: self)
     }
     
     override func didReceiveMemoryWarning() {

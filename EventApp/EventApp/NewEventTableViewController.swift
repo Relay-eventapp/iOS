@@ -37,8 +37,8 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
     //start time variables
     var startsInfoCellRow = 5
     var startsDatePickerCellRow = 6
-    @IBOutlet weak var startsInfoCell: UITableViewCell!
-    @IBOutlet weak var startTimeLabel: UILabel!
+    //@IBOutlet weak var startsInfoCell: UITableViewCell!
+    //@IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var startsDatePickerCell: UITableViewCell!
     var startsDatePicker: UIDatePicker = UIDatePicker()
     var startsDatePickerSwitch = false
@@ -67,8 +67,6 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
         
         self.nameField.delegate = self
         self.descriptionField.delegate = self
-        //var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-        //tableView.addGestureRecognizer(tap)
         imagePicked = false
         
         //round the cover photo image view
@@ -88,7 +86,7 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
         
         startTime = NSDate()
         endTime = startTime.dateByAddingTimeInterval(timeInterval)
-        startTimeLabel.text = formatter.stringFromDate(startTime)
+        //startTimeLabel.text = formatter.stringFromDate(startTime)
         endTimeLabel.text = formatter.stringFromDate(endTime)
         
         //set up the cell heights
@@ -130,12 +128,10 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
             if(nameField.text != "")
             {
                 doneButton.setTitle("Done", forState: UIControlState.Normal)
-                doneButton.backgroundColor = UIColor(red: 125/255.0, green: 195/255.0, blue: 85/255.0, alpha: 1.0)
             }
             else
             {
                 doneButton.setTitle("Cancel", forState: UIControlState.Normal)
-                doneButton.backgroundColor = UIColor(red: 52/255.0, green: 92/255.0, blue: 125/255.0, alpha: 1.0)
             }
         }
     }
@@ -175,41 +171,6 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
             self.presentViewController(imagePicker, animated: true, completion: nil)
             
         }
-        //if the user taps the "starts" info cell
-        if (indexPath.row == startsInfoCellRow)
-        {
-            startsDatePickerSwitch = !startsDatePickerSwitch
-            if(startsDatePickerSwitch == true)
-            {
-                expandStartsDatePickerCell()
-                hideEndsDatePickerCell()
-                endsDatePickerSwitch = false
-            }
-            else
-            {
-                hideStartsDatePickerCell()
-            }
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
-        
-        //if the user taps the "ends" info cell
-        if (indexPath.row == endsInfoCellRow)
-        {
-            endsDatePickerSwitch = !endsDatePickerSwitch
-            if(endsDatePickerSwitch == true)
-            {
-                expandEndsDatePickerCell()
-                hideStartsDatePickerCell()
-                startsDatePickerSwitch = false
-            }
-            else
-            {
-                hideEndsDatePickerCell()
-            }
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
         
     }
     
@@ -225,72 +186,19 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
             return eventTypeCellHeight
         case 10:
             return doneButtonCellHeight
-        case startsDatePickerCellRow:
-            if (startsDatePickerSwitch == true)
-            {
-                return expandedCellHeight
-            }
-            return 0
-        case endsDatePickerCellRow:
-            if (endsDatePickerSwitch == true)
-            {
-                return expandedCellHeight
-            }
-            return 0
         default:
             return normalCellHeight
         }
     }
     
-    //starts date picker functions
-    func expandStartsDatePickerCell()
-    {
-        println("showing Starts Date Picker")
-        startsDatePicker.frame = startsDatePickerCell.frame
-        startsDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
-        startsDatePicker.addTarget(self, action: Selector("handleStartsDatePickerCell:"), forControlEvents: UIControlEvents.ValueChanged)
-        self.view.addSubview(startsDatePicker)
-    }
-    
-    func handleStartsDatePickerCell(sender: UIDatePicker) {
-        startTime = sender.date
-        updateTimeInterval()
-    }
-    
-    func hideStartsDatePickerCell()
-    {
-        println("hiding Starts Date Picker")
-        startsDatePicker.removeFromSuperview()
-    }
-    
-    //ends date picker functions
-    func expandEndsDatePickerCell()
-    {
-        println("showing Ends Date Picker")
-        endsDatePicker.frame = endsDatePickerCell.frame
-        endsDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
-        endsDatePicker.addTarget(self, action: Selector("handleEndsDatePickerCell:"), forControlEvents: UIControlEvents.ValueChanged)
-        self.view.addSubview(endsDatePicker)
-    }
-    
-    func handleEndsDatePickerCell(sender: UIDatePicker) {
-        endTime = sender.date
-        updateTimeInterval()
-    }
-    
-    func hideEndsDatePickerCell()
-    {
-        println("hiding Ends Date Picker")
-        endsDatePicker.removeFromSuperview()
-    }
-    
+
     //update the start and end time
     func updateTimeInterval()
     {
         var timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .MediumStyle
         timeFormatter.timeStyle = .ShortStyle
-        startTimeLabel.text = timeFormatter.stringFromDate(startTime)
+        //startTimeLabel.text = timeFormatter.stringFromDate(startTime)
         endTimeLabel.text = timeFormatter.stringFromDate(endTime)
     }
     
@@ -302,10 +210,6 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
         protectedTypeButton.backgroundColor = UIColor.clearColor()
         
         switch sender {
-        case publicTypeButton:
-            eventType = 0
-            publicTypeButton.backgroundColor = UIColor.lightGrayColor()
-            println("public")
         case privateTypeButton:
             println("private")
             eventType = 1
@@ -315,7 +219,9 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
             eventType = 2
             protectedTypeButton.backgroundColor = UIColor.lightGrayColor()
         default:
-            println("default")
+            eventType = 0
+            publicTypeButton.backgroundColor = UIColor.lightGrayColor()
+            println("public")
         }
     }
     
@@ -337,57 +243,50 @@ class NewEventTableViewController: UITableViewController, UITextFieldDelegate, U
     //creates the event and sends it to the Parse backend
     func createNewEvent(name: String, location: PFGeoPoint, description: String)
     {
-        //check if the user has signed in
-        if(PFUser.currentUser() != nil)
+        //create new event
+        var newEvent = PFObject(className: "Events")
+        
+        //set cover photo of event
+        if(imagePicked == true)
         {
-            //create new event
-            var newEvent = PFObject(className: "Events")
-            
-            //set cover photo of event
-            if(imagePicked == true)
-            {
-                let imageData = UIImagePNGRepresentation(coverPhoto.image)
-                let imageFile = PFFile(name:"image.png", data:imageData)
-                newEvent.setObject(imageFile, forKey: "coverPhoto")
-            }
-            
-            //set name and description of event
-            newEvent.setObject(name, forKey: "name")
-            newEvent.setObject(description, forKey: "description")
-            
-            //set priority of event
-            newEvent.setObject(Int(arc4random_uniform(100))+1, forKey: "priority")
-            //save the user's id as the creator of the event
-            newEvent.setObject(PFUser.currentUser().objectId, forKey: "creator")
-            
-            //set location of event
-            newEvent.setObject(location, forKey: "location")
-            
-            //set type of event
-            newEvent.setObject(eventType, forKey: "type")
-            
-            //set start and end time of event
-            newEvent.setObject(startTimeLabel.text, forKey: "startTime")
-            newEvent.setObject(endTimeLabel.text, forKey: "endTime")
-            
-            //set icon and popup images for event
-            newEvent.setObject(Int(arc4random_uniform(9)), forKey: "icon")
-            newEvent.setObject(Int(arc4random_uniform(11)), forKey: "popup")
-            
-            newEvent.saveInBackgroundWithBlock {
-                (success: Bool!, error: NSError!) -> Void in
-                if success == true {
-                    println("created event: \(newEvent.objectId)")
-                }
-                else
-                {
-                    println(error)
-                }
-            }
+            let imageData = UIImagePNGRepresentation(coverPhoto.image)
+            let imageFile = PFFile(name:"image.png", data:imageData)
+            newEvent.setObject(imageFile, forKey: "coverPhoto")
         }
-        else
-        {
-            println("User not signed in.")
+        
+        //set name and description of event
+        newEvent.setObject(name, forKey: "name")
+        newEvent.setObject(description, forKey: "description")
+        
+        //set priority of event
+        newEvent.setObject(Int(arc4random_uniform(100))+1, forKey: "priority")
+        //save the user's id as the creator of the event
+        newEvent.setObject(PFUser.currentUser().objectId, forKey: "creator")
+        
+        //set location of event
+        newEvent.setObject(location, forKey: "location")
+        
+        //set type of event
+        newEvent.setObject(eventType, forKey: "type")
+        
+        //set start and end time of event
+        //newEvent.setObject(startTimeLabel.text, forKey: "startTime")
+        newEvent.setObject(endTimeLabel.text, forKey: "endTime")
+        
+        //set icon and popup images for event
+        newEvent.setObject(Int(arc4random_uniform(9)), forKey: "icon")
+        newEvent.setObject(Int(arc4random_uniform(11)), forKey: "popup")
+        
+        newEvent.saveEventually {(success: Bool!, error: NSError!) -> Void in
+            
+            if success == true {
+                println("created event: \(newEvent.objectId)")
+            }
+            else
+            {
+                println(error)
+            }
+            
         }
     }
     

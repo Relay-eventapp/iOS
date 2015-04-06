@@ -58,12 +58,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         filterEventsButton.frame = CGRectMake(self.view.frame.width - 8 - 42, 16, 42, 42)
         self.view.addSubview(filterEventsButton)
         
-        //TODO: connect with other view controllers
         if self.revealViewController() != nil {
             
+            self.revealViewController().rearViewRevealWidth = 0.9*self.view.frame.width
+            
             menuButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
-            self.revealViewController().rearViewRevealWidth = 0.85*self.view.frame.width
         }
+        
+        updateEventsInView(mapView.camera)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,13 +84,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             let labelHeight = self.addressLabel.frame.height
             self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
         
-            updateEventsInView(mapView.camera)
         //}
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == "mapCreateNewEvent"
+        if segue.identifier == "createNewEvent"
         {
             println("Performing segue to New Event Table View.")
             let vc = segue.destinationViewController as NewEventTableViewController
@@ -105,7 +106,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
         
         pressedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
-        self.performSegueWithIdentifier("mapCreateNewEvent", sender: self)
+        self.performSegueWithIdentifier("createNewEvent", sender: self)
     }
     
     /*

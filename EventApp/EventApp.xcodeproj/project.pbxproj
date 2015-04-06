@@ -10,6 +10,7 @@
 		2732FCAF1AC0AF9C0024522D /* NewEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */; };
 		273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */; };
 		274550CC1AB8AC260074B4FF /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */; };
+		274CBFA01AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274CBF9F1AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift */; };
 		276D9DC81AB6824700DED04F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC61AB6824700DED04F /* Main.storyboard */; };
 		276D9DCA1AB6824700DED04F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC91AB6824700DED04F /* Images.xcassets */; };
 		276D9DCD1AB6824700DED04F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DCB1AB6824700DED04F /* LaunchScreen.xib */; };
@@ -67,6 +68,7 @@
 		2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventTableViewController.swift; sourceTree = "<group>"; };
 		273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = ../MenuTableViewController.swift; sourceTree = "<group>"; };
+		274CBF9F1AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		276D9DBD1AB6824700DED04F /* EventApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		276D9DC11AB6824700DED04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276D9DC71AB6824700DED04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,6 +183,16 @@
 			name = Xibs;
 			sourceTree = "<group>";
 		};
+		274CBFA11AD0A5CA0045FB61 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */,
+				27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */,
+				274CBF9F1AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
 		276D9DB41AB6824600DED04F = {
 			isa = PBXGroup;
 			children = (
@@ -233,8 +245,7 @@
 		276D9DBF1AB6824700DED04F /* EventApp */ = {
 			isa = PBXGroup;
 			children = (
-				27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */,
-				27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */,
+				274CBFA11AD0A5CA0045FB61 /* Scripts */,
 				276D9DC91AB6824700DED04F /* Images.xcassets */,
 				27A7DE6A1AB69FBC00B75443 /* EventApp-Bridging-Header.h */,
 				27A337081AB802E500071040 /* AppDelegate.swift */,
@@ -391,6 +402,7 @@
 				27D6CA071AC7CB1200858616 /* InspectEventViewController.swift in Sources */,
 				273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */,
 				277F2C601ABFCCD4006EE584 /* UIViewExtension.swift in Sources */,
+				274CBFA01AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift in Sources */,
 				274550CC1AB8AC260074B4FF /* MenuTableViewController.swift in Sources */,
 				277F2C6C1AC004E5006EE584 /* CustomInfoWindow.swift in Sources */,
 				2732FCAF1AC0AF9C0024522D /* NewEventTableViewController.swift in Sources */,
