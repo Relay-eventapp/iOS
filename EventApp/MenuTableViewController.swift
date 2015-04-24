@@ -1,5 +1,5 @@
 //
-//  MenuTableViewController.swift
+//  closeTableViewController.swift
 //  EventApp
 //
 //  Created by Mike Zhao on 3/17/15.
@@ -9,107 +9,102 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegate {
-
-    let menuButton = UIButton()
-    //let menuButtonImage = UIImage(named: "bullets.png") as UIImage!
     
+    let closeButton = UIButton()
+    let closeButtonImage = UIImage(named: "close") as UIImage!
+    
+     /*
     let addEventButton = UIButton()
-    //let addEventButtonImage = UIImage(named: "add.png") as UIImage!
+    let addEventButtonImage = UIImage(named: "add") as UIImage!
+    */
+    
+    //"profile" cell outlets
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var additionalInfoLabel: UILabel!
+    
+    var logoutCellRow = 5
+    var normalCellHeight: CGFloat!
+    
+    var cellName = ["Profile", "Map", "Discover", "Friends", "Chat", "Log out"]
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        //initialize the menu button
-        //menuButton.setImage(menuButtonImage, forState: .Normal)
-        menuButton.frame = CGRectMake(10, 10, 50, 50)
-        menuButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
-        menuButton.layer.cornerRadius = 25
-        self.view.addSubview(menuButton)
+        normalCellHeight = self.tableView.frame.height/10
         
-        //initialize the add event button
-        //addEventButton.setImage(addEventButtonImage, forState: .Normal)
-        addEventButton.frame = CGRectMake(self.view.frame.width - 60, 10, 50, 50)
-        addEventButton.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
-        addEventButton.layer.cornerRadius = 25
-        self.view.addSubview(addEventButton)
+        //self.tableView.separatorInset = UIEdgeInsetsZero
+        //self.tableView.layoutMargins = UIEdgeInsetsZero
+        
+        //initialize the close button
+        closeButton.setImage(closeButtonImage, forState: .Normal)
+        closeButton.frame = CGRectMake(8, 20, 42, 42)
+        self.view.addSubview(closeButton)
+        
+        /*
+        if(PFUser.currentUser() != nil)
+        {
+            var userID = PFUser.currentUser()["facebookId"] as NSString
+            var facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
+        }
+        */
+        
+        profilePicture.layer.cornerRadius = profilePicture.frame.height/2
+        profilePicture.clipsToBounds = true
+        profilePicture.layer.borderWidth = 3.0
+        profilePicture.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1).CGColor
+        
+        //hide extraneous cells
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         if self.revealViewController() != nil {
             
-            menuButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
+            closeButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
             
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        revealViewController().frontViewController.view.userInteractionEnabled = false
+        tableView.frame = CGRectMake(0, 0, self.revealViewController().rearViewRevealWidth, self.tableView.frame.height)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        revealViewController().frontViewController.view.userInteractionEnabled = true
+    }
+    
+    //sets the height for each cell in the table view
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        switch indexPath.row {
+        case 0:
+            return 4 * normalCellHeight
+        case 5:
+            return 2 * normalCellHeight
+        default:
+            return normalCellHeight
+        }
+    }
+    
+    //log out the user when the "log out" cell is selected
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if(indexPath.row == logoutCellRow)
+        {
+            if(PFUser.currentUser() != nil)
+            {
+                PFUser.logOut()
+                println("User logged out.")
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func logOutButton(sender: AnyObject)
-    {
-        if(PFUser.currentUser() != nil)
-        {
-        PFUser.logOut()
-        //segue to loginViewController
-        println("User logged out.")
-        }
-    }
-
-    
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

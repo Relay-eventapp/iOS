@@ -10,5 +10,7 @@ import UIKit
 
 class CustomInfoWindow: UIView
 {
-    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var snippet: UILabel!
+    @IBOutlet weak var time: UILabel!
 }

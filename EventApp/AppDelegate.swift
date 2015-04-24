@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Google Maps API Init
         GMSServices.provideAPIKey("AIzaSyDNT9Wg56nPImnKhY5DDZ50eOuvrTMljzQ")
         
+        let PAWCurrentLocationDidChangeNotification: NSString = "PAWCurrentLocationDidChangeNotification"
+        
         return true
     }
     
