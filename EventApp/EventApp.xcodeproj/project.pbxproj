@@ -592,7 +592,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$HOME/Desktop/iOS/EventApp/EventApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/EventApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -621,7 +621,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$HOME/Desktop/iOS/EventApp/EventApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$PROJECT_DIR/EventApp-Bridging-Header.h";
 			};
 			name = Release;
 		};
