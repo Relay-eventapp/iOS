@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2732FCAF1AC0AF9C0024522D /* NewEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */; };
+		2732FCAF1AC0AF9C0024522D /* CreateEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732FCAE1AC0AF9C0024522D /* CreateEventTableViewController.swift */; };
 		273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */; };
-		274550CC1AB8AC260074B4FF /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */; };
-		274CBFA01AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274CBF9F1AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift */; };
+		2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */; };
+		2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754CBA21AD634A800340B6B /* InspectEventViewController.swift */; };
+		2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766F8971ADF4446001CF51A /* infoWindow.swift */; };
 		276D9DC81AB6824700DED04F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC61AB6824700DED04F /* Main.storyboard */; };
 		276D9DCA1AB6824700DED04F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC91AB6824700DED04F /* Images.xcassets */; };
 		276D9DCD1AB6824700DED04F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DCB1AB6824700DED04F /* LaunchScreen.xib */; };
 		276D9DD91AB6824700DED04F /* EventAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DD81AB6824700DED04F /* EventAppTests.swift */; };
-		277F2C601ABFCCD4006EE584 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277F2C5F1ABFCCD4006EE584 /* UIViewExtension.swift */; };
-		277F2C6A1ABFFFAD006EE584 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 277F2C691ABFFFAD006EE584 /* InfoWindow.xib */; };
-		277F2C6C1AC004E5006EE584 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277F2C6B1AC004E5006EE584 /* CustomInfoWindow.swift */; };
+		276EACA41AD26FE900202EE0 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EACA31AD26FE900202EE0 /* MenuTableViewController.swift */; };
+		276F3B341ADB9BA00057F0F3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F3B331ADB9BA00057F0F3 /* Event.swift */; };
 		279FD4101AB773F40006A6D9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FD40F1AB773F40006A6D9 /* AVFoundation.framework */; };
 		279FD4121AB773FC0006A6D9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FD4111AB773FC0006A6D9 /* CoreData.framework */; };
 		279FD4141AB774090006A6D9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FD4131AB774090006A6D9 /* CoreText.framework */; };
@@ -41,17 +41,11 @@
 		27A7DE5A1AB6876400B75443 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE591AB6876400B75443 /* libsqlite3.dylib */; };
 		27A7DE5D1AB68C1A00B75443 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE5C1AB68C1A00B75443 /* Accounts.framework */; };
 		27A7DE5F1AB68C1F00B75443 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE5E1AB68C1F00B75443 /* Social.framework */; };
-		27CD97D51AB7819B004607B5 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97D41AB7819B004607B5 /* FacebookSDK.framework */; };
-		27CD97D71AB781EB004607B5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97D61AB781EB004607B5 /* GoogleMaps.framework */; };
-		27CD97D91AB781F5004607B5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 27CD97D81AB781F5004607B5 /* GoogleMaps.bundle */; };
-		27CD97DB1AB78203004607B5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DA1AB78203004607B5 /* Bolts.framework */; };
-		27CD97E01AB7820F004607B5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DC1AB7820F004607B5 /* Parse.framework */; };
-		27CD97E11AB7820F004607B5 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DD1AB7820F004607B5 /* ParseCrashReporting.framework */; };
-		27CD97E21AB7820F004607B5 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DE1AB7820F004607B5 /* ParseFacebookUtils.framework */; };
-		27CD97E31AB7820F004607B5 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CD97DF1AB7820F004607B5 /* ParseUI.framework */; };
+		27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */; };
 		27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CD97E61AB7C355004607B5 /* MapViewController.swift */; };
-		27D6CA071AC7CB1200858616 /* InspectEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */; };
+		27CF6D7D1ADF45C200617B80 /* infoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CF6D7C1ADF45C200617B80 /* infoWindow.xib */; };
 		27FAF5A51ACDAE9100C2D193 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */; };
+		E86FD1CCD5CD2634360CCA97 /* libPods-EventApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventTableViewController.swift; sourceTree = "<group>"; };
+		2732FCAE1AC0AF9C0024522D /* CreateEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTableViewController.swift; sourceTree = "<group>"; };
 		273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = ../MenuTableViewController.swift; sourceTree = "<group>"; };
-		274CBF9F1AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DVDatePickerTableViewCell.swift; sourceTree = "<group>"; };
+		2751E7F71AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFModalTransitionAnimator.h; sourceTree = "<group>"; };
+		2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
+		2754CBA21AD634A800340B6B /* InspectEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEventViewController.swift; sourceTree = "<group>"; };
+		2766F8971ADF4446001CF51A /* infoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = infoWindow.swift; sourceTree = "<group>"; };
 		276D9DBD1AB6824700DED04F /* EventApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		276D9DC11AB6824700DED04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276D9DC71AB6824700DED04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,9 +73,8 @@
 		276D9DD21AB6824700DED04F /* EventAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		276D9DD71AB6824700DED04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276D9DD81AB6824700DED04F /* EventAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppTests.swift; sourceTree = "<group>"; };
-		277F2C5F1ABFCCD4006EE584 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		277F2C691ABFFFAD006EE584 /* InfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
-		277F2C6B1AC004E5006EE584 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
+		276EACA31AD26FE900202EE0 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		276F3B331ADB9BA00057F0F3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		279FD40F1AB773F40006A6D9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		279FD4111AB773FC0006A6D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		279FD4131AB774090006A6D9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -104,18 +99,14 @@
 		27A7DE5C1AB68C1A00B75443 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		27A7DE5E1AB68C1F00B75443 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		27A7DE6A1AB69FBC00B75443 /* EventApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventApp-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		27CD97D41AB7819B004607B5 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		27CD97D61AB781EB004607B5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = SDKs/GoogleMaps.framework; sourceTree = "<group>"; };
-		27CD97D81AB781F5004607B5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = SDKs/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		27CD97DA1AB78203004607B5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = SDKs/Bolts/ios/Bolts.framework; sourceTree = "<group>"; };
-		27CD97DC1AB7820F004607B5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = SDKs/Parse/Parse.framework; sourceTree = "<group>"; };
-		27CD97DD1AB7820F004607B5 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = SDKs/Parse/ParseCrashReporting.framework; sourceTree = "<group>"; };
-		27CD97DE1AB7820F004607B5 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = SDKs/Parse/ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		27CD97DF1AB7820F004607B5 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = SDKs/Parse/ParseUI.framework; sourceTree = "<group>"; };
+		27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		27CD97E61AB7C355004607B5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEventViewController.swift; sourceTree = "<group>"; };
+		27CF6D7C1ADF45C200617B80 /* infoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = infoWindow.xib; sourceTree = "<group>"; };
 		27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		49168BE3AA97A268A06CC92F /* Pods-EventApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.release.xcconfig"; sourceTree = "<group>"; };
+		CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EventApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA748EA5CDC71E01D4EA6F1 /* Pods-EventApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,28 +114,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27CD97DB1AB78203004607B5 /* Bolts.framework in Frameworks */,
 				279FD4201AB777CC0006A6D9 /* libstdc++.6.0.9.dylib in Frameworks */,
 				27A7DE501AB6873100B75443 /* QuartzCore.framework in Frameworks */,
-				27CD97D51AB7819B004607B5 /* FacebookSDK.framework in Frameworks */,
 				279FD41E1AB7743D0006A6D9 /* OpenGLES.framework in Frameworks */,
 				279FD41C1AB774320006A6D9 /* libicucore.dylib in Frameworks */,
-				27CD97E01AB7820F004607B5 /* Parse.framework in Frameworks */,
 				279FD41A1AB774200006A6D9 /* libc++.dylib in Frameworks */,
-				27CD97D71AB781EB004607B5 /* GoogleMaps.framework in Frameworks */,
 				279FD4181AB774170006A6D9 /* ImageIO.framework in Frameworks */,
 				279FD4161AB774110006A6D9 /* GLKit.framework in Frameworks */,
 				279FD4141AB774090006A6D9 /* CoreText.framework in Frameworks */,
 				279FD4121AB773FC0006A6D9 /* CoreData.framework in Frameworks */,
 				279FD4101AB773F40006A6D9 /* AVFoundation.framework in Frameworks */,
-				27CD97E21AB7820F004607B5 /* ParseFacebookUtils.framework in Frameworks */,
 				27A7DE5F1AB68C1F00B75443 /* Social.framework in Frameworks */,
 				27A7DE5D1AB68C1A00B75443 /* Accounts.framework in Frameworks */,
 				27A7DE5A1AB6876400B75443 /* libsqlite3.dylib in Frameworks */,
 				27A7DE581AB6875700B75443 /* libz.dylib in Frameworks */,
-				27CD97E31AB7820F004607B5 /* ParseUI.framework in Frameworks */,
 				27A7DE561AB6875000B75443 /* SystemConfiguration.framework in Frameworks */,
-				27CD97E11AB7820F004607B5 /* ParseCrashReporting.framework in Frameworks */,
 				27A7DE541AB6873E00B75443 /* StoreKit.framework in Frameworks */,
 				27A7DE521AB6873700B75443 /* Security.framework in Frameworks */,
 				27A7DE4E1AB6872B00B75443 /* MobileCoreServices.framework in Frameworks */,
@@ -152,6 +136,7 @@
 				27A7DE4A1AB6871C00B75443 /* CoreGraphics.framework in Frameworks */,
 				27A7DE481AB6871600B75443 /* CFNetwork.framework in Frameworks */,
 				27A7DE461AB6870700B75443 /* AudioToolbox.framework in Frameworks */,
+				E86FD1CCD5CD2634360CCA97 /* libPods-EventApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,46 +150,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2732FCB01AC0B4590024522D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				277F2C5F1ABFCCD4006EE584 /* UIViewExtension.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		2732FCB11AC0B4740024522D /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
 				276D9DCB1AB6824700DED04F /* LaunchScreen.xib */,
-				277F2C6B1AC004E5006EE584 /* CustomInfoWindow.swift */,
-				277F2C691ABFFFAD006EE584 /* InfoWindow.xib */,
+				2766F8971ADF4446001CF51A /* infoWindow.swift */,
+				27CF6D7C1ADF45C200617B80 /* infoWindow.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
 		};
-		274CBFA11AD0A5CA0045FB61 /* Scripts */ = {
+		2751E7FA1AEAA3B500CB4AB9 /* ZFDragableModalTransition */ = {
 			isa = PBXGroup;
 			children = (
-				27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */,
-				27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */,
-				274CBF9F1AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift */,
+				2751E7F71AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.h */,
+				2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */,
 			);
-			name = Scripts;
+			name = ZFDragableModalTransition;
+			sourceTree = "<group>";
+		};
+		2754CB9F1AD6331400340B6B /* SWRevealController */ = {
+			isa = PBXGroup;
+			children = (
+				27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */,
+				27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */,
+			);
+			name = SWRevealController;
 			sourceTree = "<group>";
 		};
 		276D9DB41AB6824600DED04F = {
 			isa = PBXGroup;
 			children = (
-				27D6CA061AC7CB1200858616 /* InspectEventViewController.swift */,
-				27CD97DC1AB7820F004607B5 /* Parse.framework */,
-				27CD97DD1AB7820F004607B5 /* ParseCrashReporting.framework */,
-				27CD97DE1AB7820F004607B5 /* ParseFacebookUtils.framework */,
-				27CD97DF1AB7820F004607B5 /* ParseUI.framework */,
-				27CD97DA1AB78203004607B5 /* Bolts.framework */,
-				27CD97D81AB781F5004607B5 /* GoogleMaps.bundle */,
-				27CD97D61AB781EB004607B5 /* GoogleMaps.framework */,
-				27CD97D41AB7819B004607B5 /* FacebookSDK.framework */,
 				279FD41F1AB777CC0006A6D9 /* libstdc++.6.0.9.dylib */,
 				279FD41D1AB7743D0006A6D9 /* OpenGLES.framework */,
 				279FD41B1AB774320006A6D9 /* libicucore.dylib */,
@@ -230,6 +206,8 @@
 				276D9DBF1AB6824700DED04F /* EventApp */,
 				276D9DD51AB6824700DED04F /* EventAppTests */,
 				276D9DBE1AB6824700DED04F /* Products */,
+				71E9D63B21F63C358B46FE87 /* Pods */,
+				D0C6CC63199E5EF30A1FC081 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,14 +223,13 @@
 		276D9DBF1AB6824700DED04F /* EventApp */ = {
 			isa = PBXGroup;
 			children = (
-				274CBFA11AD0A5CA0045FB61 /* Scripts */,
-				276D9DC91AB6824700DED04F /* Images.xcassets */,
+				276F3B361ADB9ED90057F0F3 /* Custom Classes */,
 				27A7DE6A1AB69FBC00B75443 /* EventApp-Bridging-Header.h */,
+				276D9DC91AB6824700DED04F /* Images.xcassets */,
 				27A337081AB802E500071040 /* AppDelegate.swift */,
 				276D9DC61AB6824700DED04F /* Main.storyboard */,
 				277F2C651ABFD68C006EE584 /* Views */,
 				2732FCB11AC0B4740024522D /* Xibs */,
-				2732FCB01AC0B4590024522D /* Extensions */,
 				276D9DC01AB6824700DED04F /* Supporting Files */,
 			);
 			path = EventApp;
@@ -283,15 +260,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		276F3B361ADB9ED90057F0F3 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2751E7FA1AEAA3B500CB4AB9 /* ZFDragableModalTransition */,
+				2754CB9F1AD6331400340B6B /* SWRevealController */,
+				276F3B331ADB9BA00057F0F3 /* Event.swift */,
+			);
+			name = "Custom Classes";
+			sourceTree = "<group>";
+		};
 		277F2C651ABFD68C006EE584 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */,
-				274550CB1AB8AC260074B4FF /* MenuTableViewController.swift */,
+				276EACA31AD26FE900202EE0 /* MenuTableViewController.swift */,
 				27CD97E61AB7C355004607B5 /* MapViewController.swift */,
-				2732FCAE1AC0AF9C0024522D /* NewEventTableViewController.swift */,
+				27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */,
+				2732FCAE1AC0AF9C0024522D /* CreateEventTableViewController.swift */,
+				2754CBA21AD634A800340B6B /* InspectEventViewController.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		71E9D63B21F63C358B46FE87 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EFA748EA5CDC71E01D4EA6F1 /* Pods-EventApp.debug.xcconfig */,
+				49168BE3AA97A268A06CC92F /* Pods-EventApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D0C6CC63199E5EF30A1FC081 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,9 +307,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 276D9DDC1AB6824700DED04F /* Build configuration list for PBXNativeTarget "EventApp" */;
 			buildPhases = (
+				D4AFC4445B1B6C08DA204741 /* Check Pods Manifest.lock */,
 				276D9DB91AB6824600DED04F /* Sources */,
 				276D9DBA1AB6824600DED04F /* Frameworks */,
 				276D9DBB1AB6824600DED04F /* Resources */,
+				F4DB6C22F565EAE18F0EE004 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -376,10 +384,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				276D9DC81AB6824700DED04F /* Main.storyboard in Resources */,
-				277F2C6A1ABFFFAD006EE584 /* InfoWindow.xib in Resources */,
+				27CF6D7D1ADF45C200617B80 /* infoWindow.xib in Resources */,
 				276D9DCD1AB6824700DED04F /* LaunchScreen.xib in Resources */,
 				276D9DCA1AB6824700DED04F /* Images.xcassets in Resources */,
-				27CD97D91AB781F5004607B5 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,21 +399,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D4AFC4445B1B6C08DA204741 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F4DB6C22F565EAE18F0EE004 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EventApp/Pods-EventApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		276D9DB91AB6824600DED04F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */,
 				27A337091AB802E500071040 /* AppDelegate.swift in Sources */,
 				27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */,
-				27D6CA071AC7CB1200858616 /* InspectEventViewController.swift in Sources */,
 				273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */,
-				277F2C601ABFCCD4006EE584 /* UIViewExtension.swift in Sources */,
-				274CBFA01AD0A5C20045FB61 /* DVDatePickerTableViewCell.swift in Sources */,
-				274550CC1AB8AC260074B4FF /* MenuTableViewController.swift in Sources */,
-				277F2C6C1AC004E5006EE584 /* CustomInfoWindow.swift in Sources */,
-				2732FCAF1AC0AF9C0024522D /* NewEventTableViewController.swift in Sources */,
+				276F3B341ADB9BA00057F0F3 /* Event.swift in Sources */,
+				276EACA41AD26FE900202EE0 /* MenuTableViewController.swift in Sources */,
+				2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */,
+				2732FCAF1AC0AF9C0024522D /* CreateEventTableViewController.swift in Sources */,
+				27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */,
 				27FAF5A51ACDAE9100C2D193 /* SWRevealViewController.m in Sources */,
+				2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +570,7 @@
 		};
 		276D9DDD1AB6824700DED04F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFA748EA5CDC71E01D4EA6F1 /* Pods-EventApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -539,17 +581,16 @@
 					"$(PROJECT_DIR)/SDKs/Bolts/ios",
 					"$(HOME)/Documents/FacebookSDK",
 					"$(PROJECT_DIR)/SDKs/Parse",
+					/Users/Mike/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = EventApp/Info.plist;
+				LD_MAP_FILE_PATH = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EventApp",
 				);
-				OTHER_LDFLAGS = (
-					"-force_load",
-					"$(PROJECT_DIR)/SDKs/GoogleMaps.framework/GoogleMaps",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$HOME/Desktop/iOS/EventApp/EventApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -558,6 +599,7 @@
 		};
 		276D9DDE1AB6824700DED04F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49168BE3AA97A268A06CC92F /* Pods-EventApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -568,17 +610,16 @@
 					"$(PROJECT_DIR)/SDKs/Bolts/ios",
 					"$(HOME)/Documents/FacebookSDK",
 					"$(PROJECT_DIR)/SDKs/Parse",
+					/Users/Mike/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = EventApp/Info.plist;
+				LD_MAP_FILE_PATH = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EventApp",
 				);
-				OTHER_LDFLAGS = (
-					"-force_load",
-					"$(PROJECT_DIR)/SDKs/GoogleMaps.framework/GoogleMaps",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$HOME/Desktop/iOS/EventApp/EventApp-Bridging-Header.h";
 			};

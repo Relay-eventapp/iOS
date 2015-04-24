@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import ParseUI
 
 class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate
 {
@@ -29,19 +28,13 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
         if(PFUser.currentUser() == nil) {
             
             logInViewController.delegate = self
-            logInViewController.facebookPermissions = [ "public_profile", "email" ]
-            
             signUpViewController.delegate = self
-            
             logInViewController.signUpController = signUpViewController
-            
-            logInViewController.logInView.facebookButton.addTarget(self, action: "logInWithFacebook", forControlEvents: .TouchUpInside)
-                
             presentLogInSignUpView()
         }
         else
         {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(false, completion: nil)
         }
     }
     
@@ -52,14 +45,13 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
             | PFLogInFields.LogInButton
             | PFLogInFields.SignUpButton
             | PFLogInFields.DismissButton
-            | PFLogInFields.PasswordForgotten
-            | PFLogInFields.Facebook)
+            | PFLogInFields.PasswordForgotten)
         
         self.presentViewController(logInViewController, animated: true, completion: nil)
     }
     
     //Verify User Info
-    func logInViewController(logInController: PFLogInViewController!, shouldBeginLogInWithUsername username: String!, password: String!) -> Bool
+    func logInViewController(logInController: PFLogInViewController, shouldBeginLogInWithUsername username: String, password: String) -> Bool
     {
         if(!username.isEmpty || !password.isEmpty)
         {
@@ -72,29 +64,27 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
     }
     
     //Log In
-    func logInViewController(logInController: PFLogInViewController!, didLogInUser user: PFUser!)
+    func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser)
     {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //Log In with Facebook
-    func logInWithFacebook(sender: UIButton)
-    {
-        println("logged in with facebook!")
+    func signUpViewController(signUpController: PFSignUpViewController, didSignUpUser user: PFUser) {
+        signUpController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     //Fail to Log In
-    func logInViewController(logInController: PFLogInViewController!, didFailToLogInWithError error: NSError!)
+    func logInViewController(logInController: PFLogInViewController, didFailToLogInWithError error: NSError?)
     {
         println("Failed to log in...")
     }
     
     //Sign up View
-    func signUpViewController(signUpController: PFSignUpViewController!, shouldBeginSignUp info: [NSObject : AnyObject]!) -> Bool
+    func signUpViewController(signUpController: PFSignUpViewController, shouldBeginSignUp info: [NSObject : AnyObject]) -> Bool
     {
-        if let password = info?["password"] as? String
+        if let password = info["password"] as? String
         {
-            return password.utf16Count >= 4
+            return count(password.utf16) >= 4
         }
         else
         {
@@ -103,13 +93,14 @@ class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate
     }
     
     //Fail to Sign Up
-    func signUpViewController(signUpController: PFSignUpViewController!, didFailToSignUpWithError error: NSError!)
+    func signUpViewController(signUpController: PFSignUpViewController, didFailToSignUpWithError error: NSError?)
     {
         println("Failed to sign up...")
     }
     
     //Cancel Sign Up
-    func signUpViewControllerDidCancelSignUp(signUpController: PFSignUpViewController!) {
+    func signUpViewControllerDidCancelSignUp(signUpController: PFSignUpViewController)
+    {
         println("User dismissed sign up.")
     }
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import ParseUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Facebook Init
         PFFacebookUtils.initializeFacebook()
         
+        FBLoginView.self
+        FBProfilePictureView.self
+            
         //Google Maps API Init
         GMSServices.provideAPIKey("AIzaSyDNT9Wg56nPImnKhY5DDZ50eOuvrTMljzQ")
         
@@ -38,8 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject?) -> Bool {
-            return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication,
-                withSession:PFFacebookUtils.session())
+            //return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication, withSession:PFFacebookUtils.session())
+            
+            var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+            return wasHandled
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
