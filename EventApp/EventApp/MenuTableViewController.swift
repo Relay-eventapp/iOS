@@ -11,13 +11,7 @@ import Parse
 
 class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegate {
     
-    let closeButton = UIButton()
-    let closeButtonImage = UIImage(named: "uiclose") as UIImage!
-    
-    /*
-    let addEventButton = UIButton()
-    let addEventButtonImage = UIImage(named: "add") as UIImage!
-    */
+    var closeButton = VBFPopFlatButton()
     
     //"profile" cell outlets
     @IBOutlet weak var profilePicture: UIImageView!
@@ -30,15 +24,15 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        //tableView.frame = CGRectMake(0, 0, 375, 667)
-        
+
         normalCellHeight = self.tableView.frame.height/10
         
         //initialize the close button
-        closeButton.setImage(closeButtonImage, forState: .Normal)
-        closeButton.frame = CGRectMake(8, 16, 42, 42)
-        closeButton.layer.cornerRadius = 21
+        closeButton = VBFPopFlatButton(frame: CGRectMake(16,30,26,26), buttonType: .buttonCloseType, buttonStyle: .buttonRoundedStyle, animateToInitialState: false)
+        closeButton.lineThickness = 2
+        closeButton.lineRadius = 0.1
+        closeButton.roundBackgroundColor = UIColor.whiteColor()
+        closeButton.tintColor = UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 1)
         self.view.addSubview(closeButton)
         
         profilePicture.layer.cornerRadius = profilePicture.frame.height/2

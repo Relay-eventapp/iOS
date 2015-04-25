@@ -7,6 +7,9 @@ pod 'Parse', '~> 1.7'
 pod 'ParseUI', '~> 1.1'
 pod 'ParseFacebookUtils', '~> 1.7'
 pod 'Google-Maps-iOS-SDK', '~> 1.9'
+pod 'pop', '~> 1.0'
+pod 'UIColor+FlatColors', '~> 0.0'
+pod 'VBFPopFlatButton', '~> 0.0'
 
 end
 

@@ -40,8 +40,11 @@ class InspectEventViewController: UIViewController {
         }
         
         let priority = event["priority"] as! Int
-        let gradientColor = eventColors[priority] as UIColor
+        //view.backgroundColor = UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 1)
+        //eventColors[priority] as UIColor
+        //background.alpha = 0.25
         
+        /*
         let topColor = gradientColor //UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 1)
         let bottomColor = gradientColor.colorWithAlphaComponent(0) //UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 0)
         
@@ -49,6 +52,7 @@ class InspectEventViewController: UIViewController {
         let viewGradient : CAGradientLayer = CAGradientLayer(topColor: topColor, bottomColor: bottomColor)
         viewGradient.frame = self.view.frame
         background.layer.addSublayer(viewGradient)
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,8 +61,7 @@ class InspectEventViewController: UIViewController {
     }
 
 }
-
-import UIKit
+/*
 import QuartzCore
 
 extension CAGradientLayer {
@@ -81,4 +84,4 @@ extension CAGradientLayer {
     }
     
 }
-
+*/

@@ -19,6 +19,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-EventApp-UIColor+FlatColors.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-EventApp-VBFPopFlatButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-EventApp-pop.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-EventApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09E4E3ED740945D85F6716B2</key>
+		<key>05430AF6D9A644DDD3852A46</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3A3432F923A61C7F73DEE56F</key>
+		<key>074752BC7C2D596A1F14AD10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A5FBF874CD6A50E6FDEE671</key>
+		<key>27173A26817D9F8B6BB06B0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FC531C03059B369A52FF2546</key>
+		<key>49F741F426B3787F5DD39CEC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A55654F15F3201906688A362</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA458FE7DFA579C2B14BCF4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB47A9DEF624E096909D226B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

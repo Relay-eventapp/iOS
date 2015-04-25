@@ -9,7 +9,7 @@
 import UIKit
 
 var currentEvents:[PFObject]! = []
-
+/*
 var eventColors:[UIColor]! =
 [
     UIColor(red: 44/255.0, green: 56/255.0, blue: 114/255.0, alpha: 1.0),
@@ -22,6 +22,30 @@ var eventColors:[UIColor]! =
     UIColor(red: 172/255.0, green: 40/255.0, blue: 28/255.0, alpha: 1.0),
     UIColor(red: 95/255.0, green: 80/255.0, blue: 77/255.0, alpha: 1.0),
     UIColor(red: 201/255.0, green: 63/255.0, blue: 69/255.0, alpha: 1.0)
+]
+*/
+
+var eventColors:[UIColor]! =
+[
+    //UIColor.flatAlizarinColor(),
+    //UIColor.flatAmethystColor(),
+    //UIColor.flatAsbestosColor(),
+    //UIColor.flatBelizeHoleColor(),
+    //UIColor.flatCarrotColor(),
+    //UIColor.flatCloudsColor(),
+    //UIColor.flatConcreteColor(),
+    //UIColor.flatEmeraldColor(),
+    //UIColor.flatGreenSeaColor(),
+    UIColor.flatMidnightBlueColor(),
+    UIColor.flatNephritisColor(),
+    UIColor.flatOrangeColor(),
+    UIColor.flatPeterRiverColor(),
+    UIColor.flatPomegranateColor(),
+    UIColor.flatPumpkinColor(),
+    UIColor.flatSilverColor(),
+    UIColor.flatTurquoiseColor(),
+    UIColor.flatWetAsphaltColor(),
+    UIColor.flatWisteriaColor()
 ]
 
 var eventCategories:[String]! =
@@ -37,10 +61,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     var animator: ZFModalTransitionAnimator?
     
     //create the UI buttons
-    let menuButton = UIButton()
-    let menuButtonImage = UIImage(named: "uimenu") as UIImage!
-    let filterEventsButton = UIButton()
-    let filterEventsButtonImage = UIImage(named: "uimode") as UIImage!
+    var menuButton = VBFPopFlatButton()
+    var filterEventsButton = VBFPopFlatButton()
     
     //create the map
     @IBOutlet weak var mapView: GMSMapView!
@@ -66,13 +88,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         mapView.delegate = self
     
         //initialize the menu button
-        menuButton.setImage(menuButtonImage, forState: .Normal)
-        menuButton.frame = CGRectMake(8, 24, 40, 40)
+        menuButton = VBFPopFlatButton(frame: CGRectMake(16,30,26,26), buttonType: .buttonMenuType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
+        menuButton.lineThickness = 2
+        menuButton.tintColor = UIColor.whiteColor()
         self.view.addSubview(menuButton)
-        
+            
         //initialize the filter events button
-        filterEventsButton.setImage(filterEventsButtonImage, forState: .Normal)
-        filterEventsButton.frame = CGRectMake(self.view.frame.width - 8 - 40, 24, 40, 40)
+        filterEventsButton = VBFPopFlatButton(frame: CGRectMake(view.frame.width-16-26,30,26,26), buttonType: .buttonForwardType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
+        filterEventsButton.lineThickness = 2
+        filterEventsButton.tintColor = UIColor.whiteColor()
         self.view.addSubview(filterEventsButton)
 
         info = infoWindow(frame: CGRectMake(0, view.frame.height, view.frame.width, 96))
@@ -128,7 +152,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         
         self.animator = ZFModalTransitionAnimator(modalViewController: navController)
         self.animator!.dragable = true
-        self.animator!.bounces = false
+        self.animator!.bounces = true
         self.animator!.behindViewAlpha = 0.3
         self.animator!.behindViewScale = 0.9
         self.animator!.transitionDuration = 0.5
