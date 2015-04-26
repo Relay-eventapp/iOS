@@ -97,7 +97,7 @@ class CreateEventTableViewController: UITableViewController, UITextFieldDelegate
         protectedTypeButton.layer.cornerRadius = protectedTypeButton.frame.width/2
         
         //set up the done button
-        doneButton.addTarget(self.revealViewController(), action: "doneButtonPressed:", forControlEvents: .TouchUpInside)
+        //doneButton.addTarget(self.revealViewController(), action: "doneButtonPressed:", forControlEvents: .TouchUpInside)
         doneButton.layer.cornerRadius = 5
         
         //hide extraneous cells

@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //Parse Init
@@ -31,11 +30,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Google Maps API Init
         GMSServices.provideAPIKey("AIzaSyDNT9Wg56nPImnKhY5DDZ50eOuvrTMljzQ")
         
-        let PAWCurrentLocationDidChangeNotification: NSString = "PAWCurrentLocationDidChangeNotification"
+        self.createMenuView()
         
         return true
     }
     
+    private func createMenuView() {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
+        
+        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("MenuTableViewController") as! MenuTableViewController
+        
+        let slideMenuController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: leftViewController)
+        
+        //self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+        
+    }
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,

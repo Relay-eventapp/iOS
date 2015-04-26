@@ -9,7 +9,7 @@
 import UIKit
 
 var currentEvents:[PFObject]! = []
-/*
+
 var eventColors:[UIColor]! =
 [
     UIColor(red: 44/255.0, green: 56/255.0, blue: 114/255.0, alpha: 1.0),
@@ -23,8 +23,8 @@ var eventColors:[UIColor]! =
     UIColor(red: 95/255.0, green: 80/255.0, blue: 77/255.0, alpha: 1.0),
     UIColor(red: 201/255.0, green: 63/255.0, blue: 69/255.0, alpha: 1.0)
 ]
-*/
 
+/*
 var eventColors:[UIColor]! =
 [
     //UIColor.flatAlizarinColor(),
@@ -47,7 +47,7 @@ var eventColors:[UIColor]! =
     UIColor.flatWetAsphaltColor(),
     UIColor.flatWisteriaColor()
 ]
-
+*/
 var eventCategories:[String]! =
 [
     "Chill","Music","Food & Drink","Education","Networking","Business","Community","Arts",
@@ -107,14 +107,21 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         tap.delegate = self
         info.addGestureRecognizer(tap)
         
+        /*
         if self.revealViewController() != nil {
             
             self.revealViewController().rearViewRevealWidth = 0.9*self.view.frame.width
             
             menuButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
-        }
+        }*/
         
+        menuButton.addTarget(self, action: "revealMenu:", forControlEvents: .TouchUpInside)
         updateEventsInView(mapView.camera)
+    }
+    
+    func revealMenu(sender: UIButton)
+    {
+        self.slideMenuController()?.openLeft()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -143,9 +150,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
         
         pressedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
-        //self.performSegueWithIdentifier("createNewEvent", sender: self)
+        self.performSegueWithIdentifier("createEvent", sender: self)
+        /*
         var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var modalVC: CreateEventViewController = storyboard.instantiateViewControllerWithIdentifier("createEventViewController") as! CreateEventViewController
+        var modalVC: CreateEventViewController = storyboard.instantiateViewControllerWithIdentifier("CreateEventViewController") as! CreateEventViewController
         var navController = UINavigationController(rootViewController: modalVC)
         navController.modalPresentationStyle = .Custom
         navController.navigationBarHidden = true
@@ -157,8 +165,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.animator!.behindViewScale = 0.9
         self.animator!.transitionDuration = 0.5
         self.animator!.direction = ZFModalTransitonDirection.Bottom
+        self.animator!.setContentScrollView(<#scrollView: UIScrollView!#>)
         navController.transitioningDelegate = self.animator!
         self.presentViewController(navController, animated: true, completion: nil)
+        */
     }
     
     func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {

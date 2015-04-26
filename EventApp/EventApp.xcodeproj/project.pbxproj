@@ -18,7 +18,8 @@
 		276D9DCD1AB6824700DED04F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DCB1AB6824700DED04F /* LaunchScreen.xib */; };
 		276D9DD91AB6824700DED04F /* EventAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DD81AB6824700DED04F /* EventAppTests.swift */; };
 		276EACA41AD26FE900202EE0 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276EACA31AD26FE900202EE0 /* MenuTableViewController.swift */; };
-		276F3B341ADB9BA00057F0F3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F3B331ADB9BA00057F0F3 /* Event.swift */; };
+		278483921AEC7A93003FF081 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278483911AEC7A93003FF081 /* SlideMenuController.swift */; };
+		2799C3211AEC71AB00056461 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2799C3201AEC71AB00056461 /* ProfileCollectionViewCell.swift */; };
 		279FD4101AB773F40006A6D9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FD40F1AB773F40006A6D9 /* AVFoundation.framework */; };
 		279FD4121AB773FC0006A6D9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FD4111AB773FC0006A6D9 /* CoreData.framework */; };
 		279FD4141AB774090006A6D9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FD4131AB774090006A6D9 /* CoreText.framework */; };
@@ -45,7 +46,6 @@
 		27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */; };
 		27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CD97E61AB7C355004607B5 /* MapViewController.swift */; };
 		27CF6D7D1ADF45C200617B80 /* infoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CF6D7C1ADF45C200617B80 /* infoWindow.xib */; };
-		27FAF5A51ACDAE9100C2D193 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */; };
 		E86FD1CCD5CD2634360CCA97 /* libPods-EventApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +77,8 @@
 		276D9DD71AB6824700DED04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276D9DD81AB6824700DED04F /* EventAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAppTests.swift; sourceTree = "<group>"; };
 		276EACA31AD26FE900202EE0 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
-		276F3B331ADB9BA00057F0F3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		278483911AEC7A93003FF081 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		2799C3201AEC71AB00056461 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		279FD40F1AB773F40006A6D9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		279FD4111AB773FC0006A6D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		279FD4131AB774090006A6D9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -105,8 +106,6 @@
 		27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		27CD97E61AB7C355004607B5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		27CF6D7C1ADF45C200617B80 /* infoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = infoWindow.xib; sourceTree = "<group>"; };
-		27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		49168BE3AA97A268A06CC92F /* Pods-EventApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.release.xcconfig"; sourceTree = "<group>"; };
 		CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EventApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA748EA5CDC71E01D4EA6F1 /* Pods-EventApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,15 +180,6 @@
 			name = ZFDragableModalTransition;
 			sourceTree = "<group>";
 		};
-		2754CB9F1AD6331400340B6B /* SWRevealController */ = {
-			isa = PBXGroup;
-			children = (
-				27FAF5A41ACDAE9100C2D193 /* SWRevealViewController.m */,
-				27FAF5A31ACDAE9100C2D193 /* SWRevealViewController.h */,
-			);
-			name = SWRevealController;
-			sourceTree = "<group>";
-		};
 		276D9DB41AB6824600DED04F = {
 			isa = PBXGroup;
 			children = (
@@ -237,9 +227,9 @@
 			children = (
 				276F3B361ADB9ED90057F0F3 /* Custom Classes */,
 				27A7DE6A1AB69FBC00B75443 /* EventApp-Bridging-Header.h */,
-				276D9DC91AB6824700DED04F /* Images.xcassets */,
 				27A337081AB802E500071040 /* AppDelegate.swift */,
 				276D9DC61AB6824700DED04F /* Main.storyboard */,
+				276D9DC91AB6824700DED04F /* Images.xcassets */,
 				277F2C651ABFD68C006EE584 /* Views */,
 				2732FCB11AC0B4740024522D /* Xibs */,
 				276D9DC01AB6824700DED04F /* Supporting Files */,
@@ -275,10 +265,10 @@
 		276F3B361ADB9ED90057F0F3 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2799C3201AEC71AB00056461 /* ProfileCollectionViewCell.swift */,
+				278483911AEC7A93003FF081 /* SlideMenuController.swift */,
 				271EF38A1AEB46C0007FA497 /* DDExpandableButton */,
 				2751E7FA1AEAA3B500CB4AB9 /* ZFDragableModalTransition */,
-				2754CB9F1AD6331400340B6B /* SWRevealController */,
-				276F3B331ADB9BA00057F0F3 /* Event.swift */,
 			);
 			name = "Custom Classes";
 			sourceTree = "<group>";
@@ -453,13 +443,13 @@
 				2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */,
 				27A337091AB802E500071040 /* AppDelegate.swift in Sources */,
 				27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */,
+				278483921AEC7A93003FF081 /* SlideMenuController.swift in Sources */,
 				273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */,
-				276F3B341ADB9BA00057F0F3 /* Event.swift in Sources */,
 				276EACA41AD26FE900202EE0 /* MenuTableViewController.swift in Sources */,
 				2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */,
 				2732FCAF1AC0AF9C0024522D /* CreateEventTableViewController.swift in Sources */,
+				2799C3211AEC71AB00056461 /* ProfileCollectionViewCell.swift in Sources */,
 				27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */,
-				27FAF5A51ACDAE9100C2D193 /* SWRevealViewController.m in Sources */,
 				2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */,
 				271EF38D1AEB46CE007FA497 /* DDExpandableButton.m in Sources */,
 			);

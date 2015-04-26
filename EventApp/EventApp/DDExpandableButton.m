@@ -151,10 +151,7 @@
 		self.unSelectedLabelFont = DEFAULT_UNSELECTED_FONT;
 
 		//self.backgroundColor = [UIColor colorWithWhite:DEFAULT_BKG_WHITE alpha:DEFAULT_BKG_ALPHA];
-        self.backgroundColor = [UIColor colorWithRed: 0/255.0
-                                               green: 0/255.0
-                                                blue: 0/255.0
-                                               alpha: 0.2];
+        self.backgroundColor = [UIColor colorWithRed:0.5 green:1.0 blue:0.5 alpha: 0.4];
         self.alpha = 1.0; //DEFAULT_ALPHA;
 		self.opaque = YES;
 	}

@@ -9,12 +9,11 @@
 import UIKit
 import Parse
 
-class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegate {
+class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate {
     
     var closeButton = VBFPopFlatButton()
     
-    //"profile" cell outlets
-    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profilePicture: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var additionalInfoLabel: UILabel!
     
@@ -42,24 +41,27 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
         
         //hide extraneous cells
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        
+        /*
         if self.revealViewController() != nil {
             
             closeButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
             
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        */
     }
     
     override func viewWillAppear(animated: Bool) {
         
+        /*
         revealViewController().frontViewController.view.userInteractionEnabled = false
         tableView.frame = CGRectMake(0, 0, revealViewController().rearViewRevealWidth, self.tableView.frame.height)
+        */
     }
     
     override func viewWillDisappear(animated: Bool) {
         
-        revealViewController().frontViewController.view.userInteractionEnabled = true
+        //revealViewController().frontViewController.view.userInteractionEnabled = true
     }
     
     /*

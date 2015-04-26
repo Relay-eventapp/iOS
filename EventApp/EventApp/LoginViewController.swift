@@ -9,8 +9,8 @@
 import UIKit
 import Parse
 
-class LoginViewController: SWRevealViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate
-{
+class LoginViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
+    
     var logInViewController = PFLogInViewController()
     var signUpViewController = PFSignUpViewController()
     
