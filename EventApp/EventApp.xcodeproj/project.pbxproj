@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		271EF38D1AEB46CE007FA497 /* DDExpandableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 271EF38C1AEB46CE007FA497 /* DDExpandableButton.m */; };
-		2732FCAF1AC0AF9C0024522D /* CreateEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2732FCAE1AC0AF9C0024522D /* CreateEventTableViewController.swift */; };
 		273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */; };
 		2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */; };
 		2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754CBA21AD634A800340B6B /* InspectEventViewController.swift */; };
@@ -44,8 +43,10 @@
 		27A7DE5D1AB68C1A00B75443 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE5C1AB68C1A00B75443 /* Accounts.framework */; };
 		27A7DE5F1AB68C1F00B75443 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE5E1AB68C1F00B75443 /* Social.framework */; };
 		27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */; };
+		27B95E241AEF6EBE0078DB28 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B95E231AEF6EBE0078DB28 /* UIColorExtension.swift */; };
 		27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CD97E61AB7C355004607B5 /* MapViewController.swift */; };
 		27CF6D7D1ADF45C200617B80 /* infoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CF6D7C1ADF45C200617B80 /* infoWindow.xib */; };
+		27DE46961AEDE69600D37998 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DE46951AEDE69600D37998 /* InsetTextField.swift */; };
 		E86FD1CCD5CD2634360CCA97 /* libPods-EventApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +63,6 @@
 /* Begin PBXFileReference section */
 		271EF38B1AEB46CE007FA497 /* DDExpandableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDExpandableButton.h; sourceTree = "<group>"; };
 		271EF38C1AEB46CE007FA497 /* DDExpandableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDExpandableButton.m; sourceTree = "<group>"; };
-		2732FCAE1AC0AF9C0024522D /* CreateEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventTableViewController.swift; sourceTree = "<group>"; };
 		273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2751E7F71AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFModalTransitionAnimator.h; sourceTree = "<group>"; };
 		2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
@@ -104,8 +104,10 @@
 		27A7DE5E1AB68C1F00B75443 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		27A7DE6A1AB69FBC00B75443 /* EventApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventApp-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		27B95E231AEF6EBE0078DB28 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		27CD97E61AB7C355004607B5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		27CF6D7C1ADF45C200617B80 /* infoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = infoWindow.xib; sourceTree = "<group>"; };
+		27DE46951AEDE69600D37998 /* InsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		49168BE3AA97A268A06CC92F /* Pods-EventApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.release.xcconfig"; sourceTree = "<group>"; };
 		CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EventApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA748EA5CDC71E01D4EA6F1 /* Pods-EventApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +267,8 @@
 		276F3B361ADB9ED90057F0F3 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				27B95E231AEF6EBE0078DB28 /* UIColorExtension.swift */,
+				27DE46951AEDE69600D37998 /* InsetTextField.swift */,
 				2799C3201AEC71AB00056461 /* ProfileCollectionViewCell.swift */,
 				278483911AEC7A93003FF081 /* SlideMenuController.swift */,
 				271EF38A1AEB46C0007FA497 /* DDExpandableButton */,
@@ -280,7 +284,6 @@
 				276EACA31AD26FE900202EE0 /* MenuTableViewController.swift */,
 				27CD97E61AB7C355004607B5 /* MapViewController.swift */,
 				27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */,
-				2732FCAE1AC0AF9C0024522D /* CreateEventTableViewController.swift */,
 				2754CBA21AD634A800340B6B /* InspectEventViewController.swift */,
 			);
 			name = Views;
@@ -442,12 +445,13 @@
 			files = (
 				2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */,
 				27A337091AB802E500071040 /* AppDelegate.swift in Sources */,
+				27DE46961AEDE69600D37998 /* InsetTextField.swift in Sources */,
 				27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */,
 				278483921AEC7A93003FF081 /* SlideMenuController.swift in Sources */,
 				273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */,
+				27B95E241AEF6EBE0078DB28 /* UIColorExtension.swift in Sources */,
 				276EACA41AD26FE900202EE0 /* MenuTableViewController.swift in Sources */,
 				2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */,
-				2732FCAF1AC0AF9C0024522D /* CreateEventTableViewController.swift in Sources */,
 				2799C3211AEC71AB00056461 /* ProfileCollectionViewCell.swift in Sources */,
 				27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */,
 				2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */,

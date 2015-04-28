@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Google Maps API Init
         GMSServices.provideAPIKey("AIzaSyDNT9Wg56nPImnKhY5DDZ50eOuvrTMljzQ")
         
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
         self.createMenuView()
         
         return true
@@ -45,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let slideMenuController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: leftViewController)
         
-        //self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
         
@@ -54,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject?) -> Bool {
-            //return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication, withSession:PFFacebookUtils.session())
             
             var wasHandled:Bool = FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
             return wasHandled

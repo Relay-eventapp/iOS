@@ -10,8 +10,22 @@ import UIKit
 
 var currentEvents:[PFObject]! = []
 
+
 var eventColors:[UIColor]! =
 [
+    UIColor(rgba: "#90745B"),
+    UIColor(rgba: "#9F363A"),
+    UIColor(rgba: "#6E4931"),
+    UIColor(rgba: "#5A5A5A"),
+    UIColor(rgba: "#7A567B"),
+    UIColor(rgba: "#C24100"),
+    UIColor(rgba: "#5F504D"),
+    UIColor(rgba: "#2C4F60"),
+    UIColor(rgba: "#467E36"),
+    UIColor(rgba: "#435E80")
+    
+]
+/*[
     UIColor(red: 44/255.0, green: 56/255.0, blue: 114/255.0, alpha: 1.0),
     UIColor(red: 60/255.0, green: 29/255.0, blue: 64/255.0, alpha: 1.0),
     UIColor(red: 37/255.0, green: 64/255.0, blue: 38/255.0, alpha: 1.0),
@@ -22,32 +36,8 @@ var eventColors:[UIColor]! =
     UIColor(red: 172/255.0, green: 40/255.0, blue: 28/255.0, alpha: 1.0),
     UIColor(red: 95/255.0, green: 80/255.0, blue: 77/255.0, alpha: 1.0),
     UIColor(red: 201/255.0, green: 63/255.0, blue: 69/255.0, alpha: 1.0)
-]
+]*/
 
-/*
-var eventColors:[UIColor]! =
-[
-    //UIColor.flatAlizarinColor(),
-    //UIColor.flatAmethystColor(),
-    //UIColor.flatAsbestosColor(),
-    //UIColor.flatBelizeHoleColor(),
-    //UIColor.flatCarrotColor(),
-    //UIColor.flatCloudsColor(),
-    //UIColor.flatConcreteColor(),
-    //UIColor.flatEmeraldColor(),
-    //UIColor.flatGreenSeaColor(),
-    UIColor.flatMidnightBlueColor(),
-    UIColor.flatNephritisColor(),
-    UIColor.flatOrangeColor(),
-    UIColor.flatPeterRiverColor(),
-    UIColor.flatPomegranateColor(),
-    UIColor.flatPumpkinColor(),
-    UIColor.flatSilverColor(),
-    UIColor.flatTurquoiseColor(),
-    UIColor.flatWetAsphaltColor(),
-    UIColor.flatWisteriaColor()
-]
-*/
 var eventCategories:[String]! =
 [
     "Chill","Music","Food & Drink","Education","Networking","Business","Community","Arts",
@@ -88,16 +78,19 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         mapView.delegate = self
     
         //initialize the menu button
-        menuButton = VBFPopFlatButton(frame: CGRectMake(16,30,26,26), buttonType: .buttonMenuType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
+        menuButton = VBFPopFlatButton(frame: CGRectMake(16,30,28,28), buttonType: .buttonMenuType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
+        //menuButton.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         menuButton.lineThickness = 2
         menuButton.tintColor = UIColor.whiteColor()
         self.view.addSubview(menuButton)
             
         //initialize the filter events button
-        filterEventsButton = VBFPopFlatButton(frame: CGRectMake(view.frame.width-16-26,30,26,26), buttonType: .buttonForwardType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
+        /*
+        filterEventsButton = VBFPopFlatButton(frame: CGRectMake(view.frame.width-16-26,30,36,36), buttonType: .buttonForwardType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
         filterEventsButton.lineThickness = 2
         filterEventsButton.tintColor = UIColor.whiteColor()
         self.view.addSubview(filterEventsButton)
+        */
 
         info = infoWindow(frame: CGRectMake(0, view.frame.height, view.frame.width, 96))
         info.hidden = true
@@ -107,21 +100,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         tap.delegate = self
         info.addGestureRecognizer(tap)
         
-        /*
-        if self.revealViewController() != nil {
-            
-            self.revealViewController().rearViewRevealWidth = 0.9*self.view.frame.width
-            
-            menuButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
-        }*/
-        
         menuButton.addTarget(self, action: "revealMenu:", forControlEvents: .TouchUpInside)
         updateEventsInView(mapView.camera)
     }
     
     func revealMenu(sender: UIButton)
     {
-        self.slideMenuController()?.openLeft()
+        slideMenuController()?.openLeft()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -131,9 +116,18 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == "createNewEvent"
+        if segue.identifier == "createEvent"
         {
-            
+            let createEventViewController = segue.destinationViewController as! CreateEventViewController
+            createEventViewController.newEventLocation = pressedLocation
+            println("pressed location: \(pressedLocation)")
+            self.animator = ZFModalTransitionAnimator(modalViewController: createEventViewController)
+            createEventViewController.transitioningDelegate = self.animator!
+            createEventViewController.modalPresentationStyle = .Custom
+            self.animator!.dragable = true
+            self.animator!.bounces = false
+            self.animator!.direction = .Right
+            self.animator!.transitionDuration = 0.4
         }
         else if segue.identifier == "inspectEvent"
         {
@@ -151,24 +145,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         
         pressedLocation = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
         self.performSegueWithIdentifier("createEvent", sender: self)
-        /*
-        var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        var modalVC: CreateEventViewController = storyboard.instantiateViewControllerWithIdentifier("CreateEventViewController") as! CreateEventViewController
-        var navController = UINavigationController(rootViewController: modalVC)
-        navController.modalPresentationStyle = .Custom
-        navController.navigationBarHidden = true
-        
-        self.animator = ZFModalTransitionAnimator(modalViewController: navController)
-        self.animator!.dragable = true
-        self.animator!.bounces = true
-        self.animator!.behindViewAlpha = 0.3
-        self.animator!.behindViewScale = 0.9
-        self.animator!.transitionDuration = 0.5
-        self.animator!.direction = ZFModalTransitonDirection.Bottom
-        self.animator!.setContentScrollView(<#scrollView: UIScrollView!#>)
-        navController.transitioningDelegate = self.animator!
-        self.presentViewController(navController, animated: true, completion: nil)
-        */
     }
     
     func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
@@ -318,13 +294,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     //create the marker layer
     func createMarkerIcon(priority: Int!, category: Int!, subCategory: Int!) -> UIImage
     {
-        var newSize = CGSizeMake(48, 48)
-        var popupColor = eventColors[priority].CGColor
+        var newSize = CGSizeMake(42, 42)
+        var popupColor = eventColors[priority].CGColor //UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1.0).CGColor //UIColor(red: 221/255.0, green: 70/255.0, blue: 80/255.0, alpha: 1.0).CGColor
+        
         UIGraphicsBeginImageContext(newSize)
         
         var marker = CALayer()
         var popup = CAShapeLayer()
-        println("\(eventCategories[category])\(subCategory)")
+        //println("\(eventCategories[category])\(subCategory)")
         var icon = UIImage(named: "\(eventCategories[category])\(subCategory)")
         
         marker.frame = CGRectMake(0, 0, newSize.width, newSize.height)

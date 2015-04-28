@@ -1,5 +1,5 @@
 //
-//  closeTableViewController.swift
+//  MenuTableViewController.swift
 //  EventApp
 //
 //  Created by Mike Zhao on 3/17/15.
@@ -9,11 +9,11 @@
 import UIKit
 import Parse
 
-class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate {
+class MenuTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var closeButton = VBFPopFlatButton()
     
-    @IBOutlet weak var profilePicture: UIButton!
+    @IBOutlet weak var profilePictureButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var additionalInfoLabel: UILabel!
     
@@ -26,58 +26,59 @@ class MenuTableViewController: UITableViewController, UIGestureRecognizerDelegat
 
         normalCellHeight = self.tableView.frame.height/10
         
-        //initialize the close button
-        closeButton = VBFPopFlatButton(frame: CGRectMake(16,30,26,26), buttonType: .buttonCloseType, buttonStyle: .buttonRoundedStyle, animateToInitialState: false)
+        closeButton = VBFPopFlatButton(frame: CGRectMake(16,30,28,28), buttonType: .buttonCloseType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
         closeButton.lineThickness = 2
-        closeButton.lineRadius = 0.1
-        closeButton.roundBackgroundColor = UIColor.whiteColor()
-        closeButton.tintColor = UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 1)
+        closeButton.tintColor = UIColor.whiteColor()
+        closeButton.addTarget(self, action: "dismissMenu:", forControlEvents: .TouchUpInside)
         self.view.addSubview(closeButton)
         
-        profilePicture.layer.cornerRadius = profilePicture.frame.height/2
-        profilePicture.clipsToBounds = true
-        profilePicture.layer.borderWidth = 3.0
-        profilePicture.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1).CGColor
+        profilePictureButton.layer.cornerRadius = profilePictureButton.frame.height/2
+        profilePictureButton.clipsToBounds = true
+        profilePictureButton.layer.borderWidth = 3.0
+        profilePictureButton.layer.borderColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1).CGColor
+        profilePictureButton.addTarget(self, action: "selectProfilePicture:", forControlEvents: .TouchUpInside)
+        
+        println("User: \(PFUser.currentUser())")
+        
+        usernameLabel.text = PFUser.currentUser()?.username
+        additionalInfoLabel.text = PFUser.currentUser()?.email
         
         //hide extraneous cells
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        /*
-        if self.revealViewController() != nil {
-            
-            closeButton.addTarget(self.revealViewController(), action:Selector("revealToggle:"), forControlEvents: .TouchUpInside)
-            
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-        */
-    }
-    
-    override func viewWillAppear(animated: Bool) {
         
-        /*
-        revealViewController().frontViewController.view.userInteractionEnabled = false
-        tableView.frame = CGRectMake(0, 0, revealViewController().rearViewRevealWidth, self.tableView.frame.height)
-        */
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        
-        //revealViewController().frontViewController.view.userInteractionEnabled = true
-    }
-    
-    /*
-    //sets the height for each cell in the table view
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        switch indexPath.row {
-        case 0:
-            return 4.5 * normalCellHeight
-        default:
-            return normalCellHeight
+        if (!UIAccessibilityIsReduceTransparencyEnabled()) {
+            tableView.backgroundColor = UIColor.clearColor()
+            let blurEffect = UIBlurEffect(style: .Dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            tableView.backgroundView = blurEffectView
         }
     }
-        */
+
+    func dismissMenu(sender: UIButton)
+    {
+        slideMenuController()?.closeLeft()
+    }
+
+    func selectProfilePicture(sender: UIButton)
+    {
+        var imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.allowsEditing = true
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
     
-    //log out the user when the "log out" cell is selected
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        profilePictureButton.alpha = 0
+        profilePictureButton.setImage(image, forState: .Normal)
+        UIView.animateWithDuration(1.0, animations: {
+            self.profilePictureButton.alpha = 1
+        })
+        //imagePicked = true
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if(indexPath.row == logoutCellRow)

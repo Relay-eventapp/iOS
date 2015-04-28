@@ -18,7 +18,7 @@ class SlideMenuOption {
     var shadowRadius: CGFloat = 0.0
     var shadowOffset: CGSize = CGSizeMake(0,0)
     var panFromBezel: Bool = true
-    var animationDuration: CGFloat = 0.25
+    var animationDuration: CGFloat = 0.2
     var rightViewWidth: CGFloat = 270.0
     var rightBezelWidth: CGFloat = 16.0
     var rightPanFromBezel: Bool = true
@@ -135,7 +135,6 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         rightContainerView.backgroundColor = UIColor.clearColor()
         rightContainerView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
         self.view.insertSubview(rightContainerView, atIndex: 3)
-        
         
         self.addLeftGestures()
         self.addRightGestures()
