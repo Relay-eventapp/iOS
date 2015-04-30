@@ -13,16 +13,16 @@ var currentEvents:[PFObject]! = []
 
 var eventColors:[UIColor]! =
 [
-    UIColor(rgba: "#90745B"),
-    UIColor(rgba: "#9F363A"),
-    UIColor(rgba: "#6E4931"),
-    UIColor(rgba: "#5A5A5A"),
-    UIColor(rgba: "#7A567B"),
-    UIColor(rgba: "#C24100"),
-    UIColor(rgba: "#5F504D"),
-    UIColor(rgba: "#2C4F60"),
-    UIColor(rgba: "#467E36"),
-    UIColor(rgba: "#435E80")
+    UIColor(rgba: "#155339"),
+    UIColor(rgba: "#A84241"),
+    UIColor(rgba: "#A17144"),
+    UIColor(rgba: "#376874"),
+    UIColor(rgba: "#42375F"),
+    UIColor(rgba: "#5C3950"),
+    //UIColor(rgba: "#155339"),
+    //UIColor(rgba: "#A84241"),
+    //UIColor(rgba: "#A17144"),
+    //UIColor(rgba: "#376874")
     
 ]
 /*[
@@ -75,6 +75,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         //set up the map view
         mapView.settings.consumesGesturesInView = true
         mapView.mapType = kGMSTypeNormal
+        //kGMSTypeNormal, kGMSTypeSatellite, kGMSTypeHybrid, kGMSTypeTerrain, kGMSTypeNone
         mapView.delegate = self
     
         //initialize the menu button
@@ -286,7 +287,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.first as? CLLocation {
             
-            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
         }
     }
@@ -294,8 +295,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     //create the marker layer
     func createMarkerIcon(priority: Int!, category: Int!, subCategory: Int!) -> UIImage
     {
-        var newSize = CGSizeMake(42, 42)
-        var popupColor = eventColors[priority].CGColor //UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1.0).CGColor //UIColor(red: 221/255.0, green: 70/255.0, blue: 80/255.0, alpha: 1.0).CGColor
+        var newSize = CGSizeMake(30, 30)
+        var popupColor = eventColors[priority].CGColor
+        //UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1.0).CGColor // // //UIColor(red: 221/255.0, green: 70/255.0, blue: 80/255.0, alpha: 1.0).CGColor
         
         UIGraphicsBeginImageContext(newSize)
         
@@ -321,7 +323,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         endAngle = endAngle - Float(M_PI_2)
         CGContextAddArc(context, center.x, center.y, CGFloat(radius), CGFloat(startAngle), CGFloat(endAngle), 0)
         CGContextDrawPath(context, kCGPathStroke) // or kCGPathFillStroke to fill and stroke the circle
-        icon?.drawInRect(CGRectMake(8, 8, newSize.width-16, newSize.width-16))
+        var inset: CGFloat = 6
+        icon?.drawInRect(CGRectMake(inset, inset, newSize.width-2*inset, newSize.width-2*inset))
         marker.renderInContext(UIGraphicsGetCurrentContext())
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

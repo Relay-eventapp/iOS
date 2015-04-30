@@ -12,6 +12,6 @@
 //UI related libraries
 #import "UIColor+FlatColors.h"
 #import "VBFPopFlatButton.h"
-//#import "SWRevealViewController.h"
 #import "ZFModalTransitionAnimator.h"
 #import "DDExpandableButton.h"
+#import "RKSwipeBetweenViewControllers.h"

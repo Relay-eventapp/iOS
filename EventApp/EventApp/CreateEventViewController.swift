@@ -40,8 +40,8 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     var endTime = NSDate()
     
     var unselectedColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.65)
-    var selectedColor = UIColor(red: 221/255.0, green: 70/255.0, blue: 80/255.0, alpha: 1.0)
-    var hasInfoColor = UIColor(red: 40/255.0, green: 56/255.0, blue: 77/255.0, alpha: 1.0)
+    var selectedColor = UIColor(red: 221/255.0, green: 70/255.0, blue: 80/255.0, alpha: 0.9)
+    var hasInfoColor = UIColor(red: 127.5/255.0, green: 127.5/255.0, blue: 127.5/255.0, alpha: 1.0)//UIColor(red: 40/255.0, green: 56/255.0, blue: 77/255.0, alpha: 1.0)
     
     var inputDateView: UIView!
     
@@ -97,6 +97,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         endTimeField.addTarget(self, action: "contentsDidChange:", forControlEvents: .EditingChanged)
         endTimeField.layer.cornerRadius = endTimeField.frame.height/2
         
+        createButton.addTarget(self, action: "createButtonPressed:", forControlEvents: .TouchUpInside)
         createButton.layer.cornerRadius = 8
         
         nameField.delegate = self
@@ -257,7 +258,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
             var newEvent = PFObject(className: "Events")
             
             //first level
-            var randomPriority = Int(arc4random_uniform(10))
+            var randomPriority = Int(arc4random_uniform(6))
             var randomCategory = Int(arc4random_uniform(14))
             var randomSubCategory = Int(arc4random_uniform(3))
             
