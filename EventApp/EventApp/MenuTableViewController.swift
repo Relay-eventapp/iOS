@@ -53,18 +53,18 @@ class MenuTableViewController: UITableViewController, UINavigationControllerDele
         var username = PFUser.currentUser()?.username
         if (username != nil)
         {
-        query.whereKey("username", equalTo: username!)
-        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                var user = objects?[0] as! PFObject
-                let userProfilePicture = user["profilePicture"] as? PFFile
-                if (userProfilePicture != nil)
+            query.whereKey("username", equalTo: username!)
+            query.getFirstObjectInBackgroundWithBlock({ (user: PFObject?, error: NSError?) -> Void in
+                if(error != nil)
                 {
-                    let imageData = userProfilePicture?.getData()
-                    self.profilePictureButton.setImage(UIImage(data:imageData!), forState: .Normal)
+                    if(user != nil)
+                    {
+                        let userProfilePicture = user!["profilePicture"] as! PFFile
+                        let imageData = userProfilePicture.getData()
+                        self.profilePictureButton.setImage(UIImage(data:imageData!), forState: .Normal)
+                    }
                 }
-            }
-        }
+            })
         }
         
         if (!UIAccessibilityIsReduceTransparencyEnabled()) {
@@ -92,16 +92,25 @@ class MenuTableViewController: UITableViewController, UINavigationControllerDele
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
+        let imageData = UIImagePNGRepresentation(image)
+        let imageFile = PFFile(name:"image.png", data:imageData)
+        PFUser.currentUser()!.setObject(imageFile, forKey: "photo")
+        PFUser.currentUser()!.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+            if error == nil {
+                println("profile picture set")
+            }
+            else
+            {
+                println(error)
+            }
+        }
+        
         self.dismissViewControllerAnimated(true, completion: nil)
         profilePictureButton.alpha = 0
         profilePictureButton.setImage(image, forState: .Normal)
         UIView.animateWithDuration(1.0, animations: {
             self.profilePictureButton.alpha = 1
         })
-        //imagePicked = true
-        let imageData = UIImagePNGRepresentation(profilePictureButton.imageView?.image)
-        let imageFile = PFFile(name:"image.png", data:imageData)
-        PFUser.currentUser()!.setObject(imageFile, forKey: "profilePicture")
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

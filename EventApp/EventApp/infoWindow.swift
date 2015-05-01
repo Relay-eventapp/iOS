@@ -21,12 +21,10 @@ class infoWindow: UIView, UIGestureRecognizerDelegate {
     {
         super.init(frame : frame)
         var txtClr = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0)
-        /*
         var blur = UIVisualEffectView(effect: UIBlurEffect(style: .Dark)) as UIVisualEffectView
         blur.frame = self.bounds
         self.addSubview(blur)
-        */
-        self.backgroundColor = UIColor(red: 75/255.0, green: 70/255.0, blue: 85/255.0, alpha: 1.0)
+        //self.backgroundColor = UIColor(red: 75/255.0, green: 70/255.0, blue: 85/255.0, alpha: 1.0)
         
         image = UIImageView(frame: CGRectMake(8, 8, self.frame.height-16, self.frame.height-16))
         
@@ -34,15 +32,18 @@ class infoWindow: UIView, UIGestureRecognizerDelegate {
         var l = self.frame.width - image.frame.width - 16
         var h:CGFloat = (self.frame.height-32)/3
         name = UILabel(frame: CGRectMake(o, 8, l, h+8))
-        timeicon = UIImageView(frame: CGRectMake(o, name.frame.maxY+4, h-4, h))
-        date = UILabel(frame: CGRectMake(o+h+4, name.frame.maxY+4, l-h-12, h))
-        mapicon = UIImageView(frame: CGRectMake(o, date.frame.maxY+4, h-4, h))
-        address = UILabel(frame: CGRectMake(o+h+4, date.frame.maxY+4, l-h-12,h))
+        
+        date = UILabel(frame: CGRectMake(o+h+4, name.frame.maxY+4, l-h, h))
+        address = UILabel(frame: CGRectMake(o+h+4, date.frame.maxY+4, l-h,h))
+        
+        timeicon = UIImageView(frame: CGRectMake(o, name.frame.maxY+4, h, h))
+        mapicon = UIImageView(frame: CGRectMake(o, date.frame.maxY+4, h, h))
+        timeicon.image = UIImage(named: "uicalendar")
+        mapicon.image = UIImage(named: "uilocation")
         
         image.backgroundColor = UIColor.lightGrayColor()
-        
-        timeicon.image = UIImage(named: "infocalendar")
-        mapicon.image = UIImage(named: "infomarker")
+        image.contentMode = UIViewContentMode.ScaleAspectFill
+        image.clipsToBounds = true
         
         self.addSubview(image)
         self.addSubview(name)
@@ -97,6 +98,11 @@ class infoWindow: UIView, UIGestureRecognizerDelegate {
         {
             let imageData = userImageFile?.getData()
             self.image.image = UIImage(data:imageData!)
+        }
+        else
+        {
+            let category = event["category"] as! Int
+            self.image.image = UIImage(named: "sback_\(eventCategories[category].lowercaseString)")
         }
     }
     required init(coder aDecoder: NSCoder) {

@@ -10,6 +10,8 @@
 		2712FBE01AEFF2AF007378C9 /* RKSwipeBetweenViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2712FBDF1AEFF2AF007378C9 /* RKSwipeBetweenViewControllers.m */; };
 		271EF38D1AEB46CE007FA497 /* DDExpandableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 271EF38C1AEB46CE007FA497 /* DDExpandableButton.m */; };
 		273CBCFF1ABF5D6F00A6B51B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */; };
+		2751A57D1AF2D6DA00C827D3 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751A57C1AF2D6DA00C827D3 /* CategoryCollectionViewCell.swift */; };
+		2751A57F1AF2D86300C827D3 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751A57E1AF2D86300C827D3 /* CategoryViewController.swift */; };
 		2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */; };
 		2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754CBA21AD634A800340B6B /* InspectEventViewController.swift */; };
 		2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766F8971ADF4446001CF51A /* infoWindow.swift */; };
@@ -67,6 +69,8 @@
 		271EF38B1AEB46CE007FA497 /* DDExpandableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDExpandableButton.h; sourceTree = "<group>"; };
 		271EF38C1AEB46CE007FA497 /* DDExpandableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDExpandableButton.m; sourceTree = "<group>"; };
 		273CBCFE1ABF5D6F00A6B51B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2751A57C1AF2D6DA00C827D3 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		2751A57E1AF2D86300C827D3 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		2751E7F71AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFModalTransitionAnimator.h; sourceTree = "<group>"; };
 		2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
 		2754CBA21AD634A800340B6B /* InspectEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEventViewController.swift; sourceTree = "<group>"; };
@@ -157,15 +161,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		271EF38A1AEB46C0007FA497 /* DDExpandableButton */ = {
-			isa = PBXGroup;
-			children = (
-				271EF38B1AEB46CE007FA497 /* DDExpandableButton.h */,
-				271EF38C1AEB46CE007FA497 /* DDExpandableButton.m */,
-			);
-			name = DDExpandableButton;
-			sourceTree = "<group>";
-		};
 		2732FCB11AC0B4740024522D /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,15 +169,6 @@
 				27CF6D7C1ADF45C200617B80 /* infoWindow.xib */,
 			);
 			name = Xibs;
-			sourceTree = "<group>";
-		};
-		2751E7FA1AEAA3B500CB4AB9 /* ZFDragableModalTransition */ = {
-			isa = PBXGroup;
-			children = (
-				2751E7F71AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.h */,
-				2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */,
-			);
-			name = ZFDragableModalTransition;
 			sourceTree = "<group>";
 		};
 		276D9DB41AB6824600DED04F = {
@@ -270,14 +256,17 @@
 		276F3B361ADB9ED90057F0F3 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2751A57C1AF2D6DA00C827D3 /* CategoryCollectionViewCell.swift */,
 				2712FBDE1AEFF2AF007378C9 /* RKSwipeBetweenViewControllers.h */,
 				2712FBDF1AEFF2AF007378C9 /* RKSwipeBetweenViewControllers.m */,
 				27B95E231AEF6EBE0078DB28 /* UIColorExtension.swift */,
 				27DE46951AEDE69600D37998 /* InsetTextField.swift */,
 				2799C3201AEC71AB00056461 /* ProfileCollectionViewCell.swift */,
 				278483911AEC7A93003FF081 /* SlideMenuController.swift */,
-				271EF38A1AEB46C0007FA497 /* DDExpandableButton */,
-				2751E7FA1AEAA3B500CB4AB9 /* ZFDragableModalTransition */,
+				271EF38B1AEB46CE007FA497 /* DDExpandableButton.h */,
+				271EF38C1AEB46CE007FA497 /* DDExpandableButton.m */,
+				2751E7F71AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.h */,
+				2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */,
 			);
 			name = "Custom Classes";
 			sourceTree = "<group>";
@@ -290,6 +279,7 @@
 				27CD97E61AB7C355004607B5 /* MapViewController.swift */,
 				27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */,
 				2754CBA21AD634A800340B6B /* InspectEventViewController.swift */,
+				2751A57E1AF2D86300C827D3 /* CategoryViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -448,7 +438,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2751A57D1AF2D6DA00C827D3 /* CategoryCollectionViewCell.swift in Sources */,
 				2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */,
+				2751A57F1AF2D86300C827D3 /* CategoryViewController.swift in Sources */,
 				27A337091AB802E500071040 /* AppDelegate.swift in Sources */,
 				27DE46961AEDE69600D37998 /* InsetTextField.swift in Sources */,
 				27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */,

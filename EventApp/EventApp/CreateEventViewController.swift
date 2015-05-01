@@ -41,21 +41,17 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     
     var unselectedColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.65)
     var selectedColor = UIColor(red: 221/255.0, green: 70/255.0, blue: 80/255.0, alpha: 0.9)
-    var hasInfoColor = UIColor(red: 127.5/255.0, green: 127.5/255.0, blue: 127.5/255.0, alpha: 1.0)//UIColor(red: 40/255.0, green: 56/255.0, blue: 77/255.0, alpha: 1.0)
-    
-    var inputDateView: UIView!
+    var hasInfoColor = UIColor(red: 127.5/255.0, green: 127.5/255.0, blue: 127.5/255.0, alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        inputDateView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 242))
         
         selectPhotoButton.addTarget(self, action: "selectPhoto:", forControlEvents: .TouchUpInside)
         
         backButton = VBFPopFlatButton(frame: CGRectMake(16,28,selectPhotoButton.frame.width,selectPhotoButton.frame.height), buttonType: .buttonBackType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
         backButton.lineThickness = 2
         backButton.tintColor = UIColor.whiteColor()
-        backButton.addTarget(self, action: "dismissMenu:", forControlEvents: .TouchUpInside)
+        backButton.addTarget(self, action: "dismissView:", forControlEvents: .TouchUpInside)
         self.view.addSubview(backButton)
         
         accessButton = DDExpandableButton(point: CGPointMake(16, endTimeField.frame.maxY+8), leftTitle: "Access:", buttons: ["Public", "Private", "Protected"])
@@ -133,9 +129,9 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    func dismissMenu(sender: UIButton)
+    func dismissView(sender: UIButton)
     {
-        performSegueWithIdentifier("backToMap", sender: self)
+        performSegueWithIdentifier("exitView", sender: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -244,7 +240,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
             println("Calling Create New Event.")
             var location = PFGeoPoint(latitude: newEventLocation.latitude, longitude: newEventLocation.longitude)
             createNewEvent(nameField.text, location: location, description: descriptionField.text)
-            performSegueWithIdentifier("backToMap", sender: self)
+            performSegueWithIdentifier("exitView", sender: self)
         }
     }
     
@@ -303,7 +299,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     
     @IBAction func startTimeFieldEditing(sender: UITextField) {
         
-        //let inputDateView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 242))
+        let inputDateView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 242))
         
         startDatePicker = UIDatePicker(frame: CGRectMake(0, 40, 0, 0))
         startDatePicker.date = startTime
@@ -323,7 +319,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     @IBAction func endTimeFieldEditing(sender: UITextField) {
         
-        //let inputDateView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 242))
+        let inputDateView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 242))
         
         endDatePicker = UIDatePicker(frame: CGRectMake(0, 40, 0, 0))
         endDatePicker.date = endTime

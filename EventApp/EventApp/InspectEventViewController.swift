@@ -11,24 +11,24 @@ import UIKit
 class InspectEventViewController: UIViewController {
 
     @IBOutlet weak var background: UIImageView!
-    @IBOutlet weak var profilePic: UIImageView!
     var eventId: String!
     var event: PFObject!
     
     let locationButton = UIButton()
     let locationButtonImage = UIImage(named: "map") as UIImage!
     
-    let joinButton = UIButton()
-    let joinButtonImage = UIImage(named: "add") as UIImage!
+    
+    var backButton: VBFPopFlatButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        profilePic.layer.cornerRadius = profilePic.frame.height/2
-        profilePic.clipsToBounds = true
-        profilePic.layer.borderWidth = 3.0
-        profilePic.layer.borderColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.8).CGColor
-        
+        /*
+        backButton = VBFPopFlatButton(frame: CGRectMake(16,28,28,28), buttonType: .buttonBackType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
+        backButton.lineThickness = 2
+        backButton.tintColor = UIColor.whiteColor()
+        backButton.addTarget(self, action: "dismissView:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(backButton)
+        */
         //find the event in the currentEvents Array
         for evnt in currentEvents {
          
@@ -40,48 +40,28 @@ class InspectEventViewController: UIViewController {
         }
         
         let priority = event["priority"] as! Int
-        //view.backgroundColor = UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 1)
-        //eventColors[priority] as UIColor
-        //background.alpha = 0.25
         
-        /*
-        let topColor = gradientColor //UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 1)
-        let bottomColor = gradientColor.colorWithAlphaComponent(0) //UIColor(red: (75/255.0), green: (70/255.0), blue: (85/255.0), alpha: 0)
-        
-        //set up your gradient layer with two colors.....topcolor first
-        let viewGradient : CAGradientLayer = CAGradientLayer(topColor: topColor, bottomColor: bottomColor)
-        viewGradient.frame = self.view.frame
-        background.layer.addSublayer(viewGradient)
-        */
+        let userImageFile = event["photo"] as? PFFile
+        if (userImageFile != nil)
+        {
+            let imageData = userImageFile?.getData()
+            self.background.image = UIImage(data:imageData!)
+        }
+        else
+        {
+            let category = event["category"] as! Int
+            self.background.image = UIImage(named: "back_\(eventCategories[category].lowercaseString)")
+        }
     }
-
+    
+    func dismissView(sender: UIButton)
+    {
+        performSegueWithIdentifier("exitView", sender: self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
 }
-/*
-import QuartzCore
-
-extension CAGradientLayer {
-    
-    convenience init(topColor: UIColor, bottomColor: UIColor) {
-        self.init()
-        
-        let colors = [topColor.CGColor, topColor.CGColor, bottomColor.CGColor]
-        
-        let stopOne = 0.0
-        let stopTwo = 0.4
-        let stopThree = 1.0
-        
-        let locations = [stopOne, stopTwo, stopThree]
-        
-        //set the properties of the layer
-        self.colors = colors
-        self.locations = locations
-        
-    }
-    
-}
-*/

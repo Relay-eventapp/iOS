@@ -11,13 +11,13 @@
 
 //%%% customizeable button attributes
 CGFloat X_BUFFER = 0.0; //%%% the number of pixels on either side of the segment
-CGFloat Y_BUFFER = 14.0; //%%% number of pixels on top of the segment
-CGFloat HEIGHT = 30.0; //%%% height of the segment
+CGFloat Y_BUFFER = 32.0; //%%% number of pixels on top of the segment
+CGFloat HEIGHT = 18.0; //%%% height of the segment
 
 //%%% customizeable selector bar attributes (the black bar under the buttons)
 CGFloat BOUNCE_BUFFER = 10.0; //%%% adds bounce to the selection bar when you scroll
 CGFloat ANIMATION_SPEED = 0.2; //%%% the number of seconds it takes to complete the animation
-CGFloat SELECTOR_Y_BUFFER = 40.0; //%%% the y-value of the bar that shows what page you are on (0 is the top)
+CGFloat SELECTOR_Y_BUFFER = 53.0; //%%% the y-value of the bar that shows what page you are on (0 is the top)
 CGFloat SELECTOR_HEIGHT = 4.0; //%%% thickness of the selector bar
 
 CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy offset.  I'm going to look for a better workaround in the future
@@ -51,12 +51,15 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 {
     [super viewDidLoad];
 
-    self.navigationBar.barTintColor = [UIColor colorWithRed:0.01 green:0.05 blue:0.06 alpha:1]; //%%% bartint
-    self.navigationBar.translucent = NO;
+    self.navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 70);
+    //self.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     viewControllerArray = [[NSMutableArray alloc]init];
     self.currentPageIndex = 0;
     self.isPageScrollingFlag = NO;
     self.hasAppearedFlag = NO;
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(Back)];
+    self.navigationItem.leftBarButtonItem = backButton;
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController* categoryView = [storyboard instantiateViewControllerWithIdentifier:@"categoryView"];
@@ -65,6 +68,11 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
     [viewControllerArray addObject: categoryView];
     [viewControllerArray addObject: typeView];
     [viewControllerArray addObject: tagView];
+}
+
+- (IBAction)Back
+{
+    [self dismissViewControllerAnimated:YES completion:nil]; // ios 6
 }
 
 #pragma mark Customizables
@@ -80,52 +88,21 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
     navigationView = [[UIView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.navigationBar.frame.size.height)];
     
     NSInteger numControllers = [viewControllerArray count];
-    
-    //if (!buttonText) {
-         //buttonText = [[NSArray alloc]initWithObjects: @"first",@"second",@"third",@"fourth",@"etc",@"etc",@"etc",@"etc",nil]; //%%%buttontitle
-    //}
+        buttonText = [[NSArray alloc]initWithObjects: @"Category",@"Type",@"Tags",nil];
     
     for (int i = 0; i<numControllers; i++) {
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+i*(self.view.frame.size.width-2*X_BUFFER)/numControllers-X_OFFSET, Y_BUFFER, (self.view.frame.size.width-2*X_BUFFER)/numControllers, HEIGHT)];
         [navigationView addSubview:button];
         
         button.tag = i; //%%% IMPORTANT: if you make your own custom buttons, you have to tag them appropriately
-        //button.backgroundColor = [UIColor colorWithRed:0.03 green:0.07 blue:0.08 alpha:1];//%%% buttoncolors
-        
+
         [button addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        //[button setTitle:[buttonText objectAtIndex:i] forState:UIControlStateNormal]; //%%%buttontitle
+        [button setTitle:[buttonText objectAtIndex:i] forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16.0]];
     }
     
-    //pageController.navigationController.navigationBar.topItem.titleView = navigationView;
-    
-    //%%% example custom buttons example:
-    
-    NSInteger width = (self.view.frame.size.width-(2*X_BUFFER))/3;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER, Y_BUFFER, width, HEIGHT)];
-    UIButton *middleButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+width, Y_BUFFER, width, HEIGHT)];
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(X_BUFFER+2*width, Y_BUFFER, width, HEIGHT)];
-    
-    [self.navigationBar addSubview:leftButton];
-    [self.navigationBar addSubview:middleButton];
-    [self.navigationBar addSubview:rightButton];
-    
-    leftButton.tag = 0;
-    middleButton.tag = 1;
-    rightButton.tag = 2;
-    
-    //leftButton.backgroundColor = [UIColor clearColor];
-    //middleButton.backgroundColor = [UIColor clearColor];
-    //rightButton.backgroundColor = [UIColor clearColor];
-    
-    [leftButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [middleButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [rightButton addTarget:self action:@selector(tapSegmentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [leftButton setTitle:@"Category" forState:UIControlStateNormal];
-    [middleButton setTitle:@"Type" forState:UIControlStateNormal];
-    [rightButton setTitle:@"Tag" forState:UIControlStateNormal];
-    
+    pageController.navigationController.navigationBar.topItem.titleView = navigationView;
     [self setupSelector];
 }
 
@@ -133,8 +110,7 @@ CGFloat X_OFFSET = 8.0; //%%% for some reason there's a little bit of a glitchy 
 //%%% sets up the selection bar under the buttons on the navigation bar
 -(void)setupSelector {
     selectionBar = [[UIView alloc]initWithFrame:CGRectMake(X_BUFFER-X_OFFSET, SELECTOR_Y_BUFFER,(self.view.frame.size.width-2*X_BUFFER)/[viewControllerArray count], SELECTOR_HEIGHT)];
-    selectionBar.backgroundColor = [UIColor greenColor]; //%%% sbcolor
-    selectionBar.alpha = 0.8; //%%% sbalpha
+    selectionBar.backgroundColor = [UIColor colorWithRed: 221/255.0 green: 70/255.0 blue: 80/255.0 alpha:0.9];
     [navigationView addSubview:selectionBar];
 }
 

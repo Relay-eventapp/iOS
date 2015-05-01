@@ -25,23 +25,10 @@ var eventColors:[UIColor]! =
     //UIColor(rgba: "#376874")
     
 ]
-/*[
-    UIColor(red: 44/255.0, green: 56/255.0, blue: 114/255.0, alpha: 1.0),
-    UIColor(red: 60/255.0, green: 29/255.0, blue: 64/255.0, alpha: 1.0),
-    UIColor(red: 37/255.0, green: 64/255.0, blue: 38/255.0, alpha: 1.0),
-    UIColor(red: 80/255.0, green: 28/255.0, blue: 24/255.0, alpha: 1.0),
-    UIColor(red: 62/255.0, green: 45/255.0, blue: 31/255.0, alpha: 1.0),
-    UIColor(red: 34/255.0, green: 46/255.0, blue: 64/255.0, alpha: 1.0),
-    UIColor(red: 217/255.0, green: 108/255.0, blue: 0/255.0, alpha: 1.0),
-    UIColor(red: 172/255.0, green: 40/255.0, blue: 28/255.0, alpha: 1.0),
-    UIColor(red: 95/255.0, green: 80/255.0, blue: 77/255.0, alpha: 1.0),
-    UIColor(red: 201/255.0, green: 63/255.0, blue: 69/255.0, alpha: 1.0)
-]*/
 
 var eventCategories:[String]! =
 [
-    "Chill","Music","Food & Drink","Education","Networking","Business","Community","Arts",
-    "Science & Tech","Fashion","History","Fitness & Health","Charity & Causes", "Other"
+    "Arts","Business","Charity & Causes","Chill","Community","Education","Fashion","Fitness & Health","Food & Drink","History","Music","Networking","Other","Science & Tech"
 ]
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate
@@ -56,7 +43,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     //create the map
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var navigationLabel: UILabel!
     
     var pressedLocation:CLLocationCoordinate2D!
     var didChangeCameraPosition:Bool!
@@ -80,18 +66,9 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
         //initialize the menu button
         menuButton = VBFPopFlatButton(frame: CGRectMake(16,30,28,28), buttonType: .buttonMenuType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
-        //menuButton.contentEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         menuButton.lineThickness = 2
         menuButton.tintColor = UIColor.whiteColor()
         self.view.addSubview(menuButton)
-            
-        //initialize the filter events button
-        /*
-        filterEventsButton = VBFPopFlatButton(frame: CGRectMake(view.frame.width-16-26,30,36,36), buttonType: .buttonForwardType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
-        filterEventsButton.lineThickness = 2
-        filterEventsButton.tintColor = UIColor.whiteColor()
-        self.view.addSubview(filterEventsButton)
-        */
 
         info = infoWindow(frame: CGRectMake(0, view.frame.height, view.frame.width, 96))
         info.hidden = true
@@ -128,12 +105,19 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             self.animator!.dragable = true
             self.animator!.bounces = false
             self.animator!.direction = .Right
-            self.animator!.transitionDuration = 0.4
+            self.animator!.transitionDuration = 0.45
         }
         else if segue.identifier == "inspectEvent"
         {
-            let vc = segue.destinationViewController as! InspectEventViewController
-            vc.eventId = selectedMarkerId
+            let inspectEventViewController = segue.destinationViewController as! InspectEventViewController
+            inspectEventViewController.eventId = selectedMarkerId
+            self.animator = ZFModalTransitionAnimator(modalViewController: inspectEventViewController)
+            inspectEventViewController.transitioningDelegate = self.animator!
+            inspectEventViewController.modalPresentationStyle = .Custom
+            self.animator!.dragable = true
+            self.animator!.bounces = false
+            self.animator!.direction = .Bottom
+            self.animator!.transitionDuration = 0.6
         }
     }
     
@@ -155,7 +139,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             updateEventsInView(position)
             didChangeCameraPosition = false
         }
-        
     }
     
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!)
@@ -295,9 +278,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     //create the marker layer
     func createMarkerIcon(priority: Int!, category: Int!, subCategory: Int!) -> UIImage
     {
-        var newSize = CGSizeMake(30, 30)
+        var newSize = CGSizeMake(36, 36)
         var popupColor = eventColors[priority].CGColor
-        //UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1.0).CGColor // // //UIColor(red: 221/255.0, green: 70/255.0, blue: 80/255.0, alpha: 1.0).CGColor
         
         UIGraphicsBeginImageContext(newSize)
         

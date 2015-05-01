@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventApp/MapViewController.swift"
-            timestampString = "452021307.653675"
+            timestampString = "452152372.831231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440">
+            startingLineNumber = "422"
+            endingLineNumber = "422">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventApp/MapViewController.swift"
-            timestampString = "451900824.443538"
+            timestampString = "452152372.831231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "MapViewController"
             landmarkType = "3">
             <Locations>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventApp/MapViewController.swift"
-            timestampString = "451900824.443538"
+            timestampString = "452152372.831231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "mapView(_:idleAtCameraPosition:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventApp/MapViewController.swift"
-            timestampString = "451900824.443538"
+            timestampString = "452152372.831231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "updateEventsInView(_:)"
             landmarkType = "5">
          </BreakpointContent>
