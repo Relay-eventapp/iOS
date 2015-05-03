@@ -117,10 +117,11 @@ class MenuTableViewController: UITableViewController, UINavigationControllerDele
         
         if(indexPath.row == 1)
         {
-            var discoverViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-            var navigationController = RKSwipeBetweenViewControllers(rootViewController: discoverViewController)
-            navigationController.viewControllerArray = []
+          
         }
+        
+        //storyboard.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
+        
         if(indexPath.row == logoutCellRow)
         {
             if(PFUser.currentUser() != nil)

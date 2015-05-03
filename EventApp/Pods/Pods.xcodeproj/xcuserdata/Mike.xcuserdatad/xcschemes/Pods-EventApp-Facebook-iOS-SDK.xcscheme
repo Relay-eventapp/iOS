@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FDDB987D30124D85955B3AF9"
+               BlueprintIdentifier = "25537F9092BEDFB8D71ED95B"
                BuildableName = "libPods-EventApp-Facebook-iOS-SDK.a"
                BlueprintName = "Pods-EventApp-Facebook-iOS-SDK"
                ReferencedContainer = "container:Pods.xcodeproj">

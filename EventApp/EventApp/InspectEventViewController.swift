@@ -17,27 +17,16 @@ class InspectEventViewController: UIViewController {
     let locationButton = UIButton()
     let locationButtonImage = UIImage(named: "map") as UIImage!
     
-    
-    var backButton: VBFPopFlatButton!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var categoryField: UITextField!
+    @IBOutlet weak var timeField: UITextField!
+    @IBOutlet weak var locationField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        backButton = VBFPopFlatButton(frame: CGRectMake(16,28,28,28), buttonType: .buttonBackType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
-        backButton.lineThickness = 2
-        backButton.tintColor = UIColor.whiteColor()
-        backButton.addTarget(self, action: "dismissView:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(backButton)
-        */
         //find the event in the currentEvents Array
-        for evnt in currentEvents {
-         
-            if(evnt.objectId == eventId)
-            {
-                event = evnt
-                break
-            }
-        }
+        
+        event = currentEvents[eventId]!.data
         
         let priority = event["priority"] as! Int
         
@@ -51,6 +40,31 @@ class InspectEventViewController: UIViewController {
         {
             let category = event["category"] as! Int
             self.background.image = UIImage(named: "back_\(eventCategories[category].lowercaseString)")
+        }
+        
+        var name = event["name"] as! String
+        nameField.text = name
+        
+        var category = event["category"] as! Int
+        categoryField.text = eventCategories[category]
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.timeStyle = .ShortStyle
+        var startTime = event["startTime"] as! NSDate
+        var endTime = event["endTime"] as! NSDate
+        
+        timeField.text = "\(dateFormatter.stringFromDate(startTime)) - \(dateFormatter.stringFromDate(endTime))"
+        
+        let location = CLLocationCoordinate2D(latitude: (event["location"] as! PFGeoPoint).latitude, longitude: (event["location"] as! PFGeoPoint).longitude)
+        
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(location) { response , error in
+            if let address = response?.firstResult() {
+                
+                let lines = address.lines as! [String]
+                self.locationField.text = join(", ",lines)
+            }
         }
     }
     

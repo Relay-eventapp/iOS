@@ -15,6 +15,7 @@
 		2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */; };
 		2754CBA31AD634A800340B6B /* InspectEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2754CBA21AD634A800340B6B /* InspectEventViewController.swift */; };
 		2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766F8971ADF4446001CF51A /* infoWindow.swift */; };
+		276709531AF48CA000E41E78 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276709521AF48CA000E41E78 /* Event.swift */; };
 		276D9DC81AB6824700DED04F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC61AB6824700DED04F /* Main.storyboard */; };
 		276D9DCA1AB6824700DED04F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DC91AB6824700DED04F /* Images.xcassets */; };
 		276D9DCD1AB6824700DED04F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276D9DCB1AB6824700DED04F /* LaunchScreen.xib */; };
@@ -39,7 +40,6 @@
 		27A7DE4E1AB6872B00B75443 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE4D1AB6872B00B75443 /* MobileCoreServices.framework */; };
 		27A7DE501AB6873100B75443 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE4F1AB6873100B75443 /* QuartzCore.framework */; };
 		27A7DE521AB6873700B75443 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE511AB6873700B75443 /* Security.framework */; };
-		27A7DE541AB6873E00B75443 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE531AB6873E00B75443 /* StoreKit.framework */; };
 		27A7DE561AB6875000B75443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE551AB6875000B75443 /* SystemConfiguration.framework */; };
 		27A7DE581AB6875700B75443 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE571AB6875700B75443 /* libz.dylib */; };
 		27A7DE5A1AB6876400B75443 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A7DE591AB6876400B75443 /* libsqlite3.dylib */; };
@@ -75,6 +75,7 @@
 		2751E7F81AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
 		2754CBA21AD634A800340B6B /* InspectEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectEventViewController.swift; sourceTree = "<group>"; };
 		2766F8971ADF4446001CF51A /* infoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = infoWindow.swift; sourceTree = "<group>"; };
+		276709521AF48CA000E41E78 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		276D9DBD1AB6824700DED04F /* EventApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		276D9DC11AB6824700DED04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276D9DC71AB6824700DED04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,7 +104,6 @@
 		27A7DE4D1AB6872B00B75443 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		27A7DE4F1AB6873100B75443 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		27A7DE511AB6873700B75443 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		27A7DE531AB6873E00B75443 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		27A7DE551AB6875000B75443 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		27A7DE571AB6875700B75443 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		27A7DE591AB6876400B75443 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -140,7 +140,6 @@
 				27A7DE5A1AB6876400B75443 /* libsqlite3.dylib in Frameworks */,
 				27A7DE581AB6875700B75443 /* libz.dylib in Frameworks */,
 				27A7DE561AB6875000B75443 /* SystemConfiguration.framework in Frameworks */,
-				27A7DE541AB6873E00B75443 /* StoreKit.framework in Frameworks */,
 				27A7DE521AB6873700B75443 /* Security.framework in Frameworks */,
 				27A7DE4E1AB6872B00B75443 /* MobileCoreServices.framework in Frameworks */,
 				27A7DE4C1AB6872500B75443 /* CoreLocation.framework in Frameworks */,
@@ -188,7 +187,6 @@
 				27A7DE591AB6876400B75443 /* libsqlite3.dylib */,
 				27A7DE571AB6875700B75443 /* libz.dylib */,
 				27A7DE551AB6875000B75443 /* SystemConfiguration.framework */,
-				27A7DE531AB6873E00B75443 /* StoreKit.framework */,
 				27A7DE511AB6873700B75443 /* Security.framework */,
 				27A7DE4F1AB6873100B75443 /* QuartzCore.framework */,
 				27A7DE4D1AB6872B00B75443 /* MobileCoreServices.framework */,
@@ -280,6 +278,7 @@
 				27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */,
 				2754CBA21AD634A800340B6B /* InspectEventViewController.swift */,
 				2751A57E1AF2D86300C827D3 /* CategoryViewController.swift */,
+				276709521AF48CA000E41E78 /* Event.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -353,6 +352,11 @@
 					276D9DBC1AB6824600DED04F = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = LRX3925NSA;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					276D9DD11AB6824700DED04F = {
 						CreatedOnToolsVersion = 6.2;
@@ -453,6 +457,7 @@
 				27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */,
 				2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */,
 				271EF38D1AEB46CE007FA497 /* DDExpandableButton.m in Sources */,
+				276709531AF48CA000E41E78 /* Event.swift in Sources */,
 				2712FBE01AEFF2AF007378C9 /* RKSwipeBetweenViewControllers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

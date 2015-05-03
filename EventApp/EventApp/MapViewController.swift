@@ -8,8 +8,7 @@
 
 import UIKit
 
-var currentEvents:[PFObject]! = []
-
+var currentEvents = Dictionary<String, Event>()
 
 var eventColors:[UIColor]! =
 [
@@ -37,10 +36,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     let locationManager = CLLocationManager()
     var animator: ZFModalTransitionAnimator?
     
-    //create the UI buttons
-    var menuButton = VBFPopFlatButton()
-    var filterEventsButton = VBFPopFlatButton()
-    
     //create the map
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -63,12 +58,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         mapView.mapType = kGMSTypeNormal
         //kGMSTypeNormal, kGMSTypeSatellite, kGMSTypeHybrid, kGMSTypeTerrain, kGMSTypeNone
         mapView.delegate = self
-    
-        //initialize the menu button
-        menuButton = VBFPopFlatButton(frame: CGRectMake(16,30,28,28), buttonType: .buttonMenuType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
-        menuButton.lineThickness = 2
-        menuButton.tintColor = UIColor.whiteColor()
-        self.view.addSubview(menuButton)
 
         info = infoWindow(frame: CGRectMake(0, view.frame.height, view.frame.width, 96))
         info.hidden = true
@@ -77,8 +66,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         let tap = UITapGestureRecognizer(target: self, action: Selector("infoWindowTapped:"))
         tap.delegate = self
         info.addGestureRecognizer(tap)
-        
-        menuButton.addTarget(self, action: "revealMenu:", forControlEvents: .TouchUpInside)
+
         updateEventsInView(mapView.camera)
     }
     
@@ -147,6 +135,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
 
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+
         if(info.hidden == false)
         {
             UIView.animateWithDuration(0.15, animations: {
@@ -171,7 +160,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             UIView.animateWithDuration(0.15)
             {
                 //self.info.alpha = 1
-                self.info.frame = CGRectMake(0, self.view.frame.height-self.info.frame.height, self.view.frame.height, self.info.frame.height)
+                self.info.frame = CGRectMake(0, self.view.frame.height-self.info.frame.height-self.tabBarController!.tabBar.frame.height, self.view.frame.height, self.info.frame.height)
                 self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: self.info.frame.height, right: 0)
             }
         }
@@ -186,73 +175,81 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     {
         let view = PFGeoPoint(latitude: position.target.latitude, longitude: position.target.longitude)
         var query = PFQuery(className: "Events")
-        query.selectKeys(["location", "priority", "access", "startTime", "endTime", "category", "subCategory"])
+        query.selectKeys(["location"])
+        //query.selectKeys(["location", "priority", "access", "startTime", "endTime", "category", "subCategory"])
         query.whereKey("location", nearGeoPoint: view, withinKilometers: 10)
         query.orderByDescending("priority")
         query.limit = 100
         
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
             
-                if(error == nil)
+            if(error == nil)
+            {
+                if let events = objects as? [PFObject]
                 {
-                    var updatedEvents = [PFObject]()
-                    var newEvents = [PFObject]()
-                    var eventsToRemove = [PFObject]()
+                    var updatedEvents = [String]()
+                    var newEvents = [String]()
+                    var eventsToRemove = [String]()
                     
-                    //search for new events
-                    if let arr = objects as? [PFObject]
+                    //first append all events to the updatedEvents array
+                    for event in events
                     {
-                        for event in arr {
-                            
-                            updatedEvents.append(event)
-                            if(!contains(currentEvents, event))
-                            {
-                                newEvents.append(event)
-                            }
-                        }
+                        updatedEvents.append(event.objectId!)
                     }
                     
-                    //add events that are no longer needed to the eventsToRemove array
-                    for event in currentEvents {
-                        
-                        if(!contains(updatedEvents, event))
+                    //append new events to the newEvents array
+                    for eventId in updatedEvents
+                    {
+                        if(currentEvents[eventId] == nil)
                         {
-                            eventsToRemove.append(event)
+                            newEvents.append(eventId)
                         }
                     }
                     
-                    //update all newEvents with PFQuery
-                    for newEvent in newEvents {
-                        
-                        var location = CLLocationCoordinate2D(latitude: (newEvent["location"] as! PFGeoPoint).latitude, longitude: (newEvent["location"] as! PFGeoPoint).longitude)
-                        
-                        let priority = newEvent["priority"] as! Int
-                        let category = newEvent["category"] as! Int
-                        let subCategory = newEvent["subCategory"] as! Int
-                        var marker = GMSMarker(position:location)
-                        marker.icon = self.createMarkerIcon(priority, category: category, subCategory: subCategory)
-                        
-                        marker.userData = newEvent.objectId
-                        marker.appearAnimation = kGMSMarkerAnimationPop
-                        marker.map = self.mapView
+                    //append events that should be removed to the eventsToRemove array
+                    for (id, data) in currentEvents
+                    {
+                        if !contains(updatedEvents, id)
+                        {
+                            eventsToRemove.append(id)
+                        }
                     }
                     
-                    currentEvents = currentEvents.filter { event in
-                        !contains(eventsToRemove, event)
-                    }
+                    query.selectKeys(["location", "priority", "access", "startTime", "endTime", "category", "subCategory"])
                     
-                    for event in newEvents {
-                        currentEvents.append(event)
+                    for newEventId in newEvents
+                    {
+                        var newEvent = query.getObjectWithId(newEventId)
+                        //query.getObjectInBackgroundWithId(newEventId, block: { (newEvent: PFObject?, error: NSError?) -> Void in
+                            
+                                let location = CLLocationCoordinate2D(latitude: (newEvent!["location"] as! PFGeoPoint).latitude, longitude: (newEvent!["location"] as! PFGeoPoint).longitude)
+                                
+                                let priority = newEvent!["priority"] as! Int
+                                let category = newEvent!["category"] as! Int
+                                let subCategory = newEvent!["subCategory"] as! Int
+                            
+                                var newMarker = GMSMarker(position:location)
+                                newMarker.icon = self.createMarkerIcon(priority, category: category, subCategory: subCategory)
+                                newMarker.userData = newEventId
+                                newMarker.appearAnimation = kGMSMarkerAnimationPop
+                                newMarker.map = self.mapView
+                            
+                                currentEvents[newEventId] = Event(data: newEvent!, marker: newMarker)
+                        //})
                     }
-                    
+                    //remove markers and events
+                    for eventToRemove in eventsToRemove
+                    {
+                        currentEvents[eventToRemove]!.marker.map = nil
+                        currentEvents.removeValueForKey(eventToRemove)
+                    }
                 }
-                else
-                {
-                    println("Error: \(error)")
-                }
-
+            }
+            else
+            {
+                println("Error: \(error)")
+            }
         }
-        
     }
     
     //Start Updating Location
@@ -270,7 +267,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.first as? CLLocation {
             
-            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
         }
     }
@@ -286,7 +283,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         var marker = CALayer()
         var popup = CAShapeLayer()
         //println("\(eventCategories[category])\(subCategory)")
-        var icon = UIImage(named: "\(eventCategories[category])\(subCategory)")
+        var backgroundImage = UIImage(named: "sback_\(eventCategories[category].lowercaseString)")
+        var icon = UIImage(named: "\(eventCategories[category])0")
         
         marker.frame = CGRectMake(0, 0, newSize.width, newSize.height)
         popup.frame = marker.bounds
@@ -305,8 +303,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         endAngle = endAngle - Float(M_PI_2)
         CGContextAddArc(context, center.x, center.y, CGFloat(radius), CGFloat(startAngle), CGFloat(endAngle), 0)
         CGContextDrawPath(context, kCGPathStroke) // or kCGPathFillStroke to fill and stroke the circle
+
         var inset: CGFloat = 6
-        icon?.drawInRect(CGRectMake(inset, inset, newSize.width-2*inset, newSize.width-2*inset))
+        icon?.drawInRect(CGRectMake(inset, inset, newSize.width-2*inset, newSize.height-2*inset))
+        
         marker.renderInContext(UIGraphicsGetCurrentContext())
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

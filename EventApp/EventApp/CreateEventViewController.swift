@@ -51,7 +51,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         backButton = VBFPopFlatButton(frame: CGRectMake(16,28,selectPhotoButton.frame.width,selectPhotoButton.frame.height), buttonType: .buttonBackType, buttonStyle: .buttonPlainStyle, animateToInitialState: false)
         backButton.lineThickness = 2
         backButton.tintColor = UIColor.whiteColor()
-        backButton.addTarget(self, action: "dismissView:", forControlEvents: .TouchUpInside)
+        backButton.addTarget(self, action: "exitView:", forControlEvents: .TouchUpInside)
         self.view.addSubview(backButton)
         
         accessButton = DDExpandableButton(point: CGPointMake(16, endTimeField.frame.maxY+8), leftTitle: "Access:", buttons: ["Public", "Private", "Protected"])
@@ -83,12 +83,12 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         locationField.addTarget(self, action: "contentsDidChange:", forControlEvents: .EditingChanged)
         locationField.layer.cornerRadius = locationField.frame.height/2
         
-        startTimeField.attributedPlaceholder = NSAttributedString(string:"Start Time",
+        startTimeField.attributedPlaceholder = NSAttributedString(string:"Starts",
             attributes:[NSForegroundColorAttributeName: unselectedColor])
         startTimeField.addTarget(self, action: "contentsDidChange:", forControlEvents: .EditingChanged)
         startTimeField.layer.cornerRadius = startTimeField.frame.height/2
         
-        endTimeField.attributedPlaceholder = NSAttributedString(string:"End Time",
+        endTimeField.attributedPlaceholder = NSAttributedString(string:"Ends",
             attributes:[NSForegroundColorAttributeName: unselectedColor])
         endTimeField.addTarget(self, action: "contentsDidChange:", forControlEvents: .EditingChanged)
         endTimeField.layer.cornerRadius = endTimeField.frame.height/2
