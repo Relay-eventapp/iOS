@@ -32,25 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
-        //self.createMenuView()
-        
         return true
     }
     
-    private func createMenuView() {
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
-        
-        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("MenuTableViewController") as! MenuTableViewController
-        
-        let slideMenuController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: leftViewController)
-        
-        self.window?.rootViewController = slideMenuController
-        self.window?.makeKeyAndVisible()
-        
-    }
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,

@@ -50,6 +50,7 @@
 		27CD97E71AB7C355004607B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CD97E61AB7C355004607B5 /* MapViewController.swift */; };
 		27CF6D7D1ADF45C200617B80 /* infoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CF6D7C1ADF45C200617B80 /* infoWindow.xib */; };
 		27DE46961AEDE69600D37998 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DE46951AEDE69600D37998 /* InsetTextField.swift */; };
+		27DFB87C1AF716DD0068B753 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DFB87B1AF716DD0068B753 /* GlobalVariables.swift */; };
 		E86FD1CCD5CD2634360CCA97 /* libPods-EventApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		27CD97E61AB7C355004607B5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		27CF6D7C1ADF45C200617B80 /* infoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = infoWindow.xib; sourceTree = "<group>"; };
 		27DE46951AEDE69600D37998 /* InsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
+		27DFB87B1AF716DD0068B753 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		49168BE3AA97A268A06CC92F /* Pods-EventApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.release.xcconfig"; sourceTree = "<group>"; };
 		CFB91493EA20C4B8F224B533 /* libPods-EventApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EventApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA748EA5CDC71E01D4EA6F1 /* Pods-EventApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventApp/Pods-EventApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -254,6 +256,8 @@
 		276F3B361ADB9ED90057F0F3 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				276709521AF48CA000E41E78 /* Event.swift */,
+				27DFB87B1AF716DD0068B753 /* GlobalVariables.swift */,
 				2751A57C1AF2D6DA00C827D3 /* CategoryCollectionViewCell.swift */,
 				2712FBDE1AEFF2AF007378C9 /* RKSwipeBetweenViewControllers.h */,
 				2712FBDF1AEFF2AF007378C9 /* RKSwipeBetweenViewControllers.m */,
@@ -278,7 +282,6 @@
 				27AB817E1AE9EDF6001981E6 /* CreateEventViewController.swift */,
 				2754CBA21AD634A800340B6B /* InspectEventViewController.swift */,
 				2751A57E1AF2D86300C827D3 /* CategoryViewController.swift */,
-				276709521AF48CA000E41E78 /* Event.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				276EACA41AD26FE900202EE0 /* MenuTableViewController.swift in Sources */,
 				2751E7F91AEAA3AD00CB4AB9 /* ZFModalTransitionAnimator.m in Sources */,
 				2799C3211AEC71AB00056461 /* ProfileCollectionViewCell.swift in Sources */,
+				27DFB87C1AF716DD0068B753 /* GlobalVariables.swift in Sources */,
 				27AB817F1AE9EDF6001981E6 /* CreateEventViewController.swift in Sources */,
 				2766F8981ADF4446001CF51A /* infoWindow.swift in Sources */,
 				271EF38D1AEB46CE007FA497 /* DDExpandableButton.m in Sources */,
